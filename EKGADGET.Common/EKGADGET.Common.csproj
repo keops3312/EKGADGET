@@ -68,6 +68,7 @@
     <Compile Include="Clases\Connection.cs" />
     <Compile Include="Clases\ResultClass.cs" />
     <Compile Include="Context\SqlConectionContext.cs" />
+    <Compile Include="Context\SqlConectionContextMySql.cs" />
     <Compile Include="ModelsMysql\Localidades.cs" />
     <Compile Include="Models\Localidades.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

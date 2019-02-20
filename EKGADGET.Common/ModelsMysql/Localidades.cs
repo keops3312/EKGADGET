@@ -25,6 +25,7 @@ namespace EKGADGET.Common.ModelsMysql
         public string BD { get; set; }
         public string CENTRAL { get; set; }
         public string dias_opera_mes { get; set; }
+        public string Logotipo { get; set; }
 
 
 
