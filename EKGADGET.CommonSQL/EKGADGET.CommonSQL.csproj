@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{78B9E3D9-FB94-459A-9CD9-E769CDB504F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EKGADGET.CommonSQL</RootNamespace>
+    <AssemblyName>EKGADGET.CommonSQL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\abono.cs" />
+    <Compile Include="Context\almacenaje.cs" />
+    <Compile Include="Context\anterior_abono.cs" />
+    <Compile Include="Context\Apartados.cs" />
+    <Compile Include="Context\Apartados_confg.cs" />
+    <Compile Include="Context\artventas.cs" />
+    <Compile Include="Context\artventas101.cs" />
+    <Compile Include="Context\artventas201.cs" />
+    <Compile Include="Context\artventas501.cs" />
+    <Compile Include="Context\artventas901.cs" />
+    <Compile Include="Context\Auditoria.cs" />
+    <Compile Include="Context\auditoria_fisica.cs" />
+    <Compile Include="Context\auditoria_resumen.cs" />
+    <Compile Include="Context\autorizaciones_prestamos.cs" />
+    <Compile Include="Context\auxiliar_puesto.cs" />
+    <Compile Include="Context\bolsas_ORO.cs" />
+    <Compile Include="Context\bolsas_OTROS.cs" />
+    <Compile Include="Context\borrorem.cs" />
+    <Compile Include="Context\caja1.cs" />
+    <Compile Include="Context\CAJA_AUXILIAR.cs" />
+    <Compile Include="Context\calificacion_aud.cs" />
+    <Compile Include="Context\clasificacion_cl.cs" />
+    <Compile Include="Context\clientes.cs" />
+    <Compile Include="Context\CLONA.cs" />
+    <Compile Include="Context\clonartventas.cs" />
+    <Compile Include="Context\CLONB.cs" />
+    <Compile Include="Context\clontabla.cs" />
+    <Compile Include="Context\CLON_APARTADOS.cs" />
+    <Compile Include="Context\CLON_contratos.cs" />
+    <Compile Include="Context\cobros_poliza.cs" />
+    <Compile Include="Context\comprobaciones.cs" />
+    <Compile Include="Context\comprobaciones_gastos.cs" />
+    <Compile Include="Context\Config_valores_plazos.cs" />
+    <Compile Include="Context\contabilidad.cs" />
+    <Compile Include="Context\contratos.cs" />
+    <Compile Include="Context\contrato_conta.cs" />
+    <Compile Include="Context\Contrato_temporal.cs" />
+    <Compile Include="Context\CORREO.cs" />
+    <Compile Include="Context\costo_reimpresion.cs" />
+    <Compile Include="Context\depositos.cs" />
+    <Compile Include="Context\depositos_tipo.cs" />
+    <Compile Include="Context\descuentos_distintos.cs" />
+    <Compile Include="Context\documentos.cs" />
+    <Compile Include="Context\Empleados.cs" />
+    <Compile Include="Context\Empresas.cs" />
+    <Compile Include="Context\Envios.cs" />
+    <Compile Include="Context\EstadosRepublica.cs" />
+    <Compile Include="Context\estado_civil.cs" />
+    <Compile Include="Context\EstatusApartado.cs" />
+    <Compile Include="Context\EstatusContratos.cs" />
+    <Compile Include="Context\EstatusInventarios.cs" />
+    <Compile Include="Context\ETQ_VENTA.cs" />
+    <Compile Include="Context\FactCO.cs" />
+    <Compile Include="Context\FactCTR.cs" />
+    <Compile Include="Context\facturas.cs" />
+    <Compile Include="Context\factura_conta.cs" />
+    <Compile Include="Context\fechasAU.cs" />
+    <Compile Include="Context\gastos.cs" />
+    <Compile Include="Context\GradoEstudios.cs" />
+    <Compile Include="Context\INFS.cs" />
+    <Compile Include="Context\interes.cs" />
+    <Compile Include="Context\interes_conta.cs" />
+    <Compile Include="Context\inventariopromocion.cs" />
+    <Compile Include="Context\Localidades.cs" />
+    <Compile Include="Context\marcas_localidad.cs" />
+    <Compile Include="Context\MySQLContext.cs" />
+    <Compile Include="Context\Niveles_acceso.cs" />
+    <Compile Include="Context\Noticias_SEMP2013.cs" />
+    <Compile Include="Context\paises.cs" />
+    <Compile Include="Context\prestamos_poliza.cs" />
+    <Compile Include="Context\PRG11.cs" />
+    <Compile Include="Context\PRG12.cs" />
+    <Compile Include="Context\promocioncaja.cs" />
+    <Compile Include="Context\promociones.cs" />
+    <Compile Include="Context\promocionesregalo.cs" />
+    <Compile Include="Context\promociones_Activas.cs" />
+    <Compile Include="Context\prom_aplica.cs" />
+    <Compile Include="Context\prom_aumento.cs" />
+    <Compile Include="Context\prom_descuento_interes.cs" />
+    <Compile Include="Context\prom_ventas.cs" />
+    <Compile Include="Context\PRVyusuarios.cs" />
+    <Compile Include="Context\Puestos.cs" />
+    <Compile Include="Context\puntos_confg.cs" />
+    <Compile Include="Context\refrendo.cs" />
+    <Compile Include="Context\Reimpresiones.cs" />
+    <Compile Include="Context\remate_inventarios.cs" />
+    <Compile Include="Context\remisiones.cs" />
+    <Compile Include="Context\Respaldos.cs" />
+    <Compile Include="Context\Retiros.cs" />
+    <Compile Include="Context\seguro.cs" />
+    <Compile Include="Context\selcaja.cs" />
+    <Compile Include="Context\sexos.cs" />
+    <Compile Include="Context\siglasempresa.cs" />
+    <Compile Include="Context\tabla_result.cs" />
+    <Compile Include="Context\TASA_PRESTAMOS.cs" />
+    <Compile Include="Context\TEMP_AVALUO.cs" />
+    <Compile Include="Context\TEMP_AVALUO2.cs" />
+    <Compile Include="Context\tipos_localidad.cs" />
+    <Compile Include="Context\TPavaluos.cs" />
+    <Compile Include="Context\transferencias.cs" />
+    <Compile Include="Context\TRFENTRADA.cs" />
+    <Compile Include="Context\VALOR_FACTORES.cs" />
+    <Compile Include="Context\VALOR_FACTORES_MAS.cs" />
+    <Compile Include="Context\vencidos.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

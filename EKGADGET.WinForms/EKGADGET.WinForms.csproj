@@ -39,6 +39,9 @@
     <Reference Include="DevComponents.DotNetBar.Charts, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.Instrumentation, Version=14.1.0.0, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL" />
+    <Reference Include="EDsemp">
+      <HintPath>..\..\EDsemp\EKsemp\bin\Debug\EDsemp.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,6 +54,10 @@
     <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\material\mysql-connector-net-6.9.10-noinstall\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -59,6 +66,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,6 +80,111 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DatosGadget.cs" />
+    <Compile Include="Models\abono.cs" />
+    <Compile Include="Models\almacenaje.cs" />
+    <Compile Include="Models\anterior_abono.cs" />
+    <Compile Include="Models\Apartados.cs" />
+    <Compile Include="Models\Apartados_confg.cs" />
+    <Compile Include="Models\artventas.cs" />
+    <Compile Include="Models\artventas101.cs" />
+    <Compile Include="Models\artventas201.cs" />
+    <Compile Include="Models\artventas501.cs" />
+    <Compile Include="Models\artventas901.cs" />
+    <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\auditoria_fisica.cs" />
+    <Compile Include="Models\auditoria_resumen.cs" />
+    <Compile Include="Models\autorizaciones_prestamos.cs" />
+    <Compile Include="Models\auxiliar_puesto.cs" />
+    <Compile Include="Models\bolsas_ORO.cs" />
+    <Compile Include="Models\bolsas_OTROS.cs" />
+    <Compile Include="Models\borrorem.cs" />
+    <Compile Include="Models\caja1.cs" />
+    <Compile Include="Models\CAJA_AUXILIAR.cs" />
+    <Compile Include="Models\calificacion_aud.cs" />
+    <Compile Include="Models\clasificacion_cl.cs" />
+    <Compile Include="Models\clientes.cs" />
+    <Compile Include="Models\CLONA.cs" />
+    <Compile Include="Models\clonartventas.cs" />
+    <Compile Include="Models\CLONB.cs" />
+    <Compile Include="Models\clontabla.cs" />
+    <Compile Include="Models\CLON_APARTADOS.cs" />
+    <Compile Include="Models\CLON_contratos.cs" />
+    <Compile Include="Models\cobros_poliza.cs" />
+    <Compile Include="Models\comprobaciones.cs" />
+    <Compile Include="Models\comprobaciones_gastos.cs" />
+    <Compile Include="Models\Config_valores_plazos.cs" />
+    <Compile Include="Models\contabilidad.cs" />
+    <Compile Include="Models\contratos.cs" />
+    <Compile Include="Models\contrato_conta.cs" />
+    <Compile Include="Models\Contrato_temporal.cs" />
+    <Compile Include="Models\CORREO.cs" />
+    <Compile Include="Models\costo_reimpresion.cs" />
+    <Compile Include="Models\depositos.cs" />
+    <Compile Include="Models\depositos_tipo.cs" />
+    <Compile Include="Models\descuentos_distintos.cs" />
+    <Compile Include="Models\documentos.cs" />
+    <Compile Include="Models\Empleados.cs" />
+    <Compile Include="Models\Empresas.cs" />
+    <Compile Include="Models\Envios.cs" />
+    <Compile Include="Models\EstadosRepublica.cs" />
+    <Compile Include="Models\estado_civil.cs" />
+    <Compile Include="Models\EstatusApartado.cs" />
+    <Compile Include="Models\EstatusContratos.cs" />
+    <Compile Include="Models\EstatusInventarios.cs" />
+    <Compile Include="Models\ETQ_VENTA.cs" />
+    <Compile Include="Models\FactCO.cs" />
+    <Compile Include="Models\FactCTR.cs" />
+    <Compile Include="Models\facturas.cs" />
+    <Compile Include="Models\factura_conta.cs" />
+    <Compile Include="Models\fechasAU.cs" />
+    <Compile Include="Models\gastos.cs" />
+    <Compile Include="Models\GradoEstudios.cs" />
+    <Compile Include="Models\INFS.cs" />
+    <Compile Include="Models\interes.cs" />
+    <Compile Include="Models\interes_conta.cs" />
+    <Compile Include="Models\inventariopromocion.cs" />
+    <Compile Include="Models\Localidades.cs" />
+    <Compile Include="Models\marcas_localidad.cs" />
+    <Compile Include="Models\Niveles_acceso.cs" />
+    <Compile Include="Models\Noticias_SEMP2013.cs" />
+    <Compile Include="Models\paises.cs" />
+    <Compile Include="Models\prestamos_poliza.cs" />
+    <Compile Include="Models\PRG11.cs" />
+    <Compile Include="Models\PRG12.cs" />
+    <Compile Include="Models\promocioncaja.cs" />
+    <Compile Include="Models\promociones.cs" />
+    <Compile Include="Models\promocionesregalo.cs" />
+    <Compile Include="Models\promociones_Activas.cs" />
+    <Compile Include="Models\prom_aplica.cs" />
+    <Compile Include="Models\prom_aumento.cs" />
+    <Compile Include="Models\prom_descuento_interes.cs" />
+    <Compile Include="Models\prom_ventas.cs" />
+    <Compile Include="Models\PRVyusuarios.cs" />
+    <Compile Include="Models\Puestos.cs" />
+    <Compile Include="Models\puntos_confg.cs" />
+    <Compile Include="Models\refrendo.cs" />
+    <Compile Include="Models\Reimpresiones.cs" />
+    <Compile Include="Models\remate_inventarios.cs" />
+    <Compile Include="Models\remisiones.cs" />
+    <Compile Include="Models\Respaldos.cs" />
+    <Compile Include="Models\Retiros.cs" />
+    <Compile Include="Models\seguro.cs" />
+    <Compile Include="Models\selcaja.cs" />
+    <Compile Include="Models\sexos.cs" />
+    <Compile Include="Models\siglasempresa.cs" />
+    <Compile Include="Context\SQLContext.cs" />
+    <Compile Include="Models\tabla_result.cs" />
+    <Compile Include="Models\TASA_PRESTAMOS.cs" />
+    <Compile Include="Models\TEMP_AVALUO.cs" />
+    <Compile Include="Models\TEMP_AVALUO2.cs" />
+    <Compile Include="Models\tipos_localidad.cs" />
+    <Compile Include="Models\TPavaluos.cs" />
+    <Compile Include="Models\transferencias.cs" />
+    <Compile Include="Models\TRFENTRADA.cs" />
+    <Compile Include="Models\VALOR_FACTORES.cs" />
+    <Compile Include="Models\VALOR_FACTORES_MAS.cs" />
+    <Compile Include="Models\vencidos.cs" />
     <Compile Include="Views\GadgetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +207,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\GadgetForm.resx">
       <DependentUpon>GadgetForm.cs</DependentUpon>
@@ -109,16 +224,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EKGADGET.Common\EKGADGET.Common.csproj">
-      <Project>{B30E07CF-4149-4688-88E7-8D3DB1EFBA25}</Project>
-      <Name>EKGADGET.Common</Name>
-    </ProjectReference>
+    <None Include="Resources\calendario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\relojarena.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\storia-icona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\categoria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sucursal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grafica.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
