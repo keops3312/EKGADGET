@@ -25,6 +25,7 @@ namespace EKGADGET.WinForms
         #region Porperties (propiedades)
         private DatosGadget datosGadget;
         private DataTable datosGadgetResultados;
+        private DataTable prestamosTipos;
         #endregion
 
         #region Attributes (atributos)
@@ -44,7 +45,7 @@ namespace EKGADGET.WinForms
         {
             InitializeComponent();
             datosGadget = new DatosGadget();
-           
+           // prestamosTipos = new DataTable();
         }
         private void StartGadget()
         {
@@ -63,7 +64,7 @@ namespace EKGADGET.WinForms
                 hoyFecha = datosGadget.medio.ToString("yyyy-MM-dd");
 
                 rango = datosGadget.Semana(hoyFecha);
-                rangoObjetivos = datosGadget.Objetivos(datosGadget.localidad, datosGadget.fechafin);
+                rangoObjetivos = datosGadget.Objetivos(datosGadget.localidad, datosGadget.fechafin,datosGadget.fechaInicio);
 
                 lblAno.Text = datosGadget.ano;
                 lblMes.Text = datosGadget.mes;
@@ -74,6 +75,7 @@ namespace EKGADGET.WinForms
 
 
                 datosGadgetResultados = datosGadget.Result(inicioFecha, finFecha, hoyFecha, rango[0], rango[1]);
+                prestamosTipos= datosGadget.prestamostipo(inicioFecha, finFecha);
 
                 prestamosMes = decimal.Parse(datosGadgetResultados.Rows[0][0].ToString());
                 prestamosHoy = decimal.Parse(datosGadgetResultados.Rows[0][2].ToString());
@@ -122,47 +124,99 @@ namespace EKGADGET.WinForms
                 //acumulado hasta hoy y mensual
                 circPrestamos.Maximum = 100;
                 circPrestamos.Minimum = 0;
-                decimal porcentajePrestamos=prestamosMensual / prestamosMes * 10;
-                circPrestamos.Value = Convert.ToInt32(porcentaje);
-                ratingTotal.Rating = Convert.ToInt32(porcentaje/10);
+                if (prestamosMes != 0)
+                {
+                    decimal porcentajePrestamos = prestamosMensual / prestamosMes * 10;
+                    circPrestamos.Value = Convert.ToInt32(porcentaje);
+                    ratingTotal.Rating = Convert.ToInt32(porcentaje / 10);
+                }
+               
                
                 //acumulado el dia de hoy
                 cirDiario.Maximum = 100;
                 cirDiario.Minimum = 0;
-                decimal objetivodiario = prestamosMensual / diasOperativos;
-                decimal porcentajeDiarioPrestamos = prestamosHoy / objetivodiario * 100;
-               
-                if (porcentajeDiarioPrestamos > 100)
+                if (prestamosMes != 0)
                 {
-                    cirDiario.Maximum = Convert.ToInt32(porcentajeDiarioPrestamos); 
+                    decimal objetivodiario = prestamosMensual / diasOperativos;
+                    decimal porcentajeDiarioPrestamos = prestamosHoy / objetivodiario * 100;
+
+                    if (porcentajeDiarioPrestamos > 100)
+                    {
+                        cirDiario.Maximum = Convert.ToInt32(porcentajeDiarioPrestamos);
+                    }
+                    cirDiario.Value = Convert.ToInt32(porcentajeDiarioPrestamos);
+
                 }
-                cirDiario.Value = Convert.ToInt32(porcentajeDiarioPrestamos);
+                
 
                 //acumulado semanal del jefe de sucursal
                 cirSemJefe.Maximum = 100;
                 cirSemJefe.Minimum = 0;
-                decimal porcentajeSemJefPrestamos =  prestamosEstaSemana / prestamosJefe * 100;
-
-                if (porcentajeSemJefPrestamos > 100)
+                if (prestamosMes != 0)
                 {
-                    cirSemJefe.Maximum = Convert.ToInt32(porcentajeSemJefPrestamos);
+                    decimal porcentajeSemJefPrestamos = prestamosEstaSemana / prestamosJefe * 100;
+
+                    if (porcentajeSemJefPrestamos > 100)
+                    {
+                        cirSemJefe.Maximum = Convert.ToInt32(porcentajeSemJefPrestamos);
+                    }
+                    cirSemJefe.Value = Convert.ToInt32(porcentajeSemJefPrestamos);
+
+                    ratingStar1.Rating = Convert.ToInt32(porcentajeSemJefPrestamos / 10);
+
+
                 }
-                cirSemJefe.Value = Convert.ToInt32(porcentajeSemJefPrestamos);
-              
-                ratingStar1.Rating = Convert.ToInt32(porcentajeSemJefPrestamos / 10);
 
 
                 //acumulado semanal del cajero
                 cirSemCajero.Maximum = 100;
                 cirSemCajero.Minimum = 0;
-                decimal porcentajeSemCajeroPrestamos = prestamosEstaSemana / prestamosCajero * 100;
-
-                if (porcentajeSemCajeroPrestamos > 100)
+                if (prestamosMes != 0)
                 {
-                    cirSemCajero.Maximum = Convert.ToInt32(porcentajeSemCajeroPrestamos);
+                    decimal porcentajeSemCajeroPrestamos = prestamosEstaSemana / prestamosCajero * 100;
+
+                    if (porcentajeSemCajeroPrestamos > 100)
+                    {
+                        cirSemCajero.Maximum = Convert.ToInt32(porcentajeSemCajeroPrestamos);
+                    }
+                    cirSemCajero.Value = Convert.ToInt32(porcentajeSemCajeroPrestamos);
+                    ratingStar2.Rating = Convert.ToInt32(porcentajeSemCajeroPrestamos / 10);
+
                 }
-                cirSemCajero.Value = Convert.ToInt32(porcentajeSemCajeroPrestamos);
-                ratingStar2.Rating = Convert.ToInt32(porcentajeSemCajeroPrestamos / 10);
+
+
+                //ahora muestro los prestamos por tipo
+                radialMenu1.Items.Clear();
+                if (prestamosTipos.Rows.Count > 0)
+                {
+                    string avaluoTipo, cantidadTipo;
+                    decimal prestamoTipo;
+                   
+                    foreach (DataRow item in prestamosTipos.Rows)
+                    {
+                        //create item
+                        avaluoTipo = item[0].ToString();
+                        cantidadTipo = item[1].ToString();
+                        prestamoTipo = decimal.Parse(item[2].ToString()); 
+                        RadialMenuItem items = new RadialMenuItem();
+
+                        items.Text = avaluoTipo + "\n C-" + cantidadTipo + 
+                            " \n" + string.Format("{0:C2}", prestamoTipo);
+                        items.Symbol = "\uf040";
+                        items.SymbolSize = 8;
+                        
+
+
+                        radialMenu1.Items.Add(items);
+                    }
+
+                }
+
+
+
+
+
+
 
             }
             catch (Exception ex)

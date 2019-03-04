@@ -26,7 +26,7 @@ namespace EKGADGET.WinForms
         public string miSucursal; 
         public string empresa;
         public string localidad;
-        public DateTime inicio,fin,medio,fechafin;
+        public DateTime inicio,fin,medio,fechafin,fechaInicio;
         public string logo;
         //cuantos domingo han pasado para restar esos dias
         int diasPasado = 0;
@@ -92,6 +92,7 @@ namespace EKGADGET.WinForms
 
 
             fechafin = Convert.ToDateTime((ano-1) + "-" + mesCadena + "-" + diasEnMes); ;//para localizar en el mysql del año anterior
+            fechaInicio = Convert.ToDateTime((ano - 1) + "-" + mesCadena + "-01"); ;//para localizar en el mysql del año anterior
 
 
 
@@ -274,15 +275,7 @@ namespace EKGADGET.WinForms
 
 
 
-            //prestamos por categoria
-            var tipoPrestamos= (from p in db.contratos where p.Status != "CANCELADO" &&
-                               p.FechaCons >= dt
-                               && p.FechaCons <= dt2
-                                select p.valuacion_tipo).Distinct();
-            foreach (var item in tipoPrestamos)
-            {
-
-            }
+           
 
 
             totales.Rows.Add(suma, total, cHoy, totalHoy, cHoyS, totalHoyS);
@@ -293,7 +286,41 @@ namespace EKGADGET.WinForms
             return totales;
         } 
 
-        public string[] Objetivos(string sucursal,DateTime fecha_final)
+        public DataTable prestamostipo(string dateStart, string dateEnd)
+        {
+            DataTable resultados= new DataTable();
+            DateTime dt = DateTime.Parse(dateStart);
+            DateTime dt2 = DateTime.Parse(dateEnd);
+            resultados.Columns.Add();
+            resultados.Columns.Add();
+            resultados.Columns.Add();
+            //prestamos por categoria
+            var tipoPrestamos = (from p in db.contratos
+                                 where p.Status != "CANCELADO" &&
+                                     p.FechaCons >= dt
+                                     && p.FechaCons <= dt2
+                                 select p.valuacion_tipo).Distinct();
+            foreach (var item in tipoPrestamos)
+            {
+               decimal D = db.contratos.Where(p => p.Status != "CANCELADO" &&
+                            p.FechaCons >= dt
+                            && p.FechaCons <= dt2 && p.valuacion_tipo==item
+                            )
+                           .Sum(p => p.Prestamo);
+
+
+                int C = db.contratos.Count(p => p.Status != "CANCELADO" &&
+                                     p.FechaCons >= dt
+                                     && p.FechaCons <= dt2 && p.valuacion_tipo == item);
+
+                resultados.Rows.Add(item, C, D);
+            }
+
+            
+            return resultados;
+        }
+
+        public string[] Objetivos(string sucursal,DateTime fecha_final,DateTime dateStart)
         {
             string[] resultado = new string[7];
 
@@ -356,9 +383,18 @@ namespace EKGADGET.WinForms
                 }
             myConnection.Close();
 
+
+
+            //SELECT * FROM monter_BD_RSsuc.CRM_SEMP_TOTAL where localidad_Nom='prg_1'
+            //and fecha_NOM between '2018-03-01'  and '2018-03-31' order by idcrm_semp_total desc;
+
+
             myConnection.Open();
             MySqlCommand cmdAnt = new MySqlCommand("SELECT PRESTAMO_C, PRESTAMO_P" +
-             " from CRM_SEMP_TOTAL where localidad_NOM='" + sucursal.Trim() + "' and fecha_NOm='" + fecha_final.ToString("yyyy-MM-dd") + "'", myConnection);
+             " from CRM_SEMP_TOTAL where localidad_NOM='" + sucursal.Trim() + "' and FECHA_NOM between " +
+             " '" + dateStart.ToString("yyyy-MM-dd") + "' and " +
+             " '" + fecha_final.ToString("yyyy-MM-dd") + "'  " +
+             "order by idcrm_semp_total desc limit 1", myConnection);
             MySqlDataReader reader2 = cmdAnt.ExecuteReader();
             while (reader2.Read())
             {

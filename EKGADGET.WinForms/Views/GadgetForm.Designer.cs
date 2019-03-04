@@ -227,7 +227,6 @@
             this.circPrestamos.Size = new System.Drawing.Size(210, 171);
             this.circPrestamos.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.circPrestamos.TabIndex = 11;
-            this.circPrestamos.Value = 80;
             // 
             // cirDiario
             // 
@@ -244,7 +243,6 @@
             this.cirDiario.Size = new System.Drawing.Size(153, 163);
             this.cirDiario.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirDiario.TabIndex = 12;
-            this.cirDiario.Value = 80;
             // 
             // styleManager1
             // 
@@ -331,7 +329,6 @@
             this.cirSemJefe.Size = new System.Drawing.Size(142, 134);
             this.cirSemJefe.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirSemJefe.TabIndex = 21;
-            this.cirSemJefe.Value = 40;
             // 
             // labelX7
             // 
@@ -361,7 +358,6 @@
             this.cirSemCajero.Size = new System.Drawing.Size(142, 134);
             this.cirSemCajero.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirSemCajero.TabIndex = 23;
-            this.cirSemCajero.Value = 35;
             // 
             // labelX8
             // 
@@ -476,10 +472,11 @@
             // 
             // 
             this.radialMenu1.Colors.RadialMenuItemDisabledForeground = System.Drawing.Color.Empty;
+            this.radialMenu1.Diameter = 360;
             this.radialMenu1.Location = new System.Drawing.Point(190, 643);
             this.radialMenu1.Name = "radialMenu1";
-            this.radialMenu1.Size = new System.Drawing.Size(28, 28);
-            this.radialMenu1.Symbol = "";
+            this.radialMenu1.Size = new System.Drawing.Size(24, 24);
+            this.radialMenu1.Symbol = "";
             this.radialMenu1.SymbolSize = 13F;
             this.radialMenu1.TabIndex = 33;
             this.radialMenu1.Text = "radialMenu1";
@@ -532,7 +529,7 @@
             // 
             // 
             this.switchButton1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton1.Location = new System.Drawing.Point(347, 648);
+            this.switchButton1.Location = new System.Drawing.Point(331, 639);
             this.switchButton1.Name = "switchButton1";
             this.switchButton1.OffText = "Comprimir";
             this.switchButton1.OnText = "Expandir";
@@ -632,7 +629,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 694);
+            this.ClientSize = new System.Drawing.Size(980, 677);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -677,7 +674,7 @@
             this.Controls.Add(this.lblMes);
             this.DoubleBuffered = true;
             this.EnableGlass = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GadgetForm";
             this.Text = "Gadget SEMP";
             this.Load += new System.EventHandler(this.GadgetForm_Load);
