@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DatosGadget.cs" />
+    <Compile Include="Classes\SaldosGadget.cs" />
     <Compile Include="Models\abono.cs" />
     <Compile Include="Models\almacenaje.cs" />
     <Compile Include="Models\anterior_abono.cs" />
@@ -199,6 +200,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ResultadosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ResultadosForm.Designer.cs">
+      <DependentUpon>ResultadosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaldosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SaldosForm.Designer.cs">
+      <DependentUpon>SaldosForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -211,6 +224,9 @@
     </Compile>
     <EmbeddedResource Include="Views\GadgetForm.resx">
       <DependentUpon>GadgetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SaldosForm.resx">
+      <DependentUpon>SaldosForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -248,6 +264,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\grafica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart-1_111423.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_PNG8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

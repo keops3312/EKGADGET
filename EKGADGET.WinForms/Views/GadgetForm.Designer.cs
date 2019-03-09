@@ -62,19 +62,19 @@
             this.radialMenu1 = new DevComponents.DotNetBar.RadialMenu();
             this.lblDiasRestantes = new DevComponents.DotNetBar.LabelX();
             this.btnSaldos = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             this.switchButton1 = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.prdDiasRestantes = new DevComponents.DotNetBar.Controls.ProgressBarX();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.piclLogo = new System.Windows.Forms.PictureBox();
             this.btnClose = new DevComponents.DotNetBar.Controls.ReflectionImage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclLogo)).BeginInit();
@@ -87,7 +87,7 @@
             // 
             this.lblMes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMes.Location = new System.Drawing.Point(313, 24);
+            this.lblMes.Location = new System.Drawing.Point(319, 409);
             this.lblMes.Name = "lblMes";
             this.lblMes.Size = new System.Drawing.Size(184, 23);
             this.lblMes.TabIndex = 0;
@@ -100,7 +100,7 @@
             // 
             this.lblAno.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAno.Location = new System.Drawing.Point(118, 24);
+            this.lblAno.Location = new System.Drawing.Point(124, 409);
             this.lblAno.Name = "lblAno";
             this.lblAno.Size = new System.Drawing.Size(173, 23);
             this.lblAno.TabIndex = 1;
@@ -113,7 +113,7 @@
             // 
             this.lblFecha.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(118, 56);
+            this.lblFecha.Location = new System.Drawing.Point(124, 441);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(379, 23);
             this.lblFecha.TabIndex = 3;
@@ -126,7 +126,7 @@
             // 
             this.lblSucursal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSucursal.Location = new System.Drawing.Point(95, 171);
+            this.lblSucursal.Location = new System.Drawing.Point(101, 556);
             this.lblSucursal.Name = "lblSucursal";
             this.lblSucursal.Size = new System.Drawing.Size(336, 71);
             this.lblSucursal.TabIndex = 4;
@@ -139,7 +139,7 @@
             // 
             this.lblMensual.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblMensual.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensual.Location = new System.Drawing.Point(21, 333);
+            this.lblMensual.Location = new System.Drawing.Point(9, 89);
             this.lblMensual.Name = "lblMensual";
             this.lblMensual.Size = new System.Drawing.Size(293, 32);
             this.lblMensual.TabIndex = 5;
@@ -152,7 +152,7 @@
             // 
             this.lblDiasOperativo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblDiasOperativo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiasOperativo.Location = new System.Drawing.Point(513, 19);
+            this.lblDiasOperativo.Location = new System.Drawing.Point(576, 404);
             this.lblDiasOperativo.Name = "lblDiasOperativo";
             this.lblDiasOperativo.Size = new System.Drawing.Size(106, 33);
             this.lblDiasOperativo.TabIndex = 6;
@@ -166,7 +166,7 @@
             // 
             this.lblHaceUnAño.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblHaceUnAño.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHaceUnAño.Location = new System.Drawing.Point(456, 168);
+            this.lblHaceUnAño.Location = new System.Drawing.Point(462, 553);
             this.lblHaceUnAño.Name = "lblHaceUnAño";
             this.lblHaceUnAño.Size = new System.Drawing.Size(345, 74);
             this.lblHaceUnAño.TabIndex = 7;
@@ -180,9 +180,9 @@
             // 
             this.lblObjetivoDiario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblObjetivoDiario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObjetivoDiario.Location = new System.Drawing.Point(331, 276);
+            this.lblObjetivoDiario.Location = new System.Drawing.Point(308, 35);
             this.lblObjetivoDiario.Name = "lblObjetivoDiario";
-            this.lblObjetivoDiario.Size = new System.Drawing.Size(177, 32);
+            this.lblObjetivoDiario.Size = new System.Drawing.Size(177, 23);
             this.lblObjetivoDiario.TabIndex = 8;
             this.lblObjetivoDiario.Text = "Diario: $0000.00";
             // 
@@ -193,7 +193,7 @@
             // 
             this.lblAcumuladoHastaHoy.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblAcumuladoHastaHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAcumuladoHastaHoy.Location = new System.Drawing.Point(21, 376);
+            this.lblAcumuladoHastaHoy.Location = new System.Drawing.Point(9, 125);
             this.lblAcumuladoHastaHoy.Name = "lblAcumuladoHastaHoy";
             this.lblAcumuladoHastaHoy.Size = new System.Drawing.Size(293, 23);
             this.lblAcumuladoHastaHoy.TabIndex = 9;
@@ -206,7 +206,7 @@
             // 
             this.lblTotalOperacionesPrestamos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblTotalOperacionesPrestamos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalOperacionesPrestamos.Location = new System.Drawing.Point(21, 414);
+            this.lblTotalOperacionesPrestamos.Location = new System.Drawing.Point(9, 158);
             this.lblTotalOperacionesPrestamos.Name = "lblTotalOperacionesPrestamos";
             this.lblTotalOperacionesPrestamos.Size = new System.Drawing.Size(293, 23);
             this.lblTotalOperacionesPrestamos.TabIndex = 10;
@@ -219,12 +219,12 @@
             // 
             this.circPrestamos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.circPrestamos.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.circPrestamos.Location = new System.Drawing.Point(17, 466);
+            this.circPrestamos.Location = new System.Drawing.Point(12, 186);
             this.circPrestamos.Name = "circPrestamos";
             this.circPrestamos.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Donut;
             this.circPrestamos.ProgressColor = System.Drawing.Color.LimeGreen;
             this.circPrestamos.ProgressTextVisible = true;
-            this.circPrestamos.Size = new System.Drawing.Size(210, 171);
+            this.circPrestamos.Size = new System.Drawing.Size(162, 138);
             this.circPrestamos.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.circPrestamos.TabIndex = 11;
             // 
@@ -235,12 +235,12 @@
             // 
             this.cirDiario.BackgroundStyle.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarCaptionBackground2;
             this.cirDiario.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.cirDiario.Location = new System.Drawing.Point(331, 451);
+            this.cirDiario.Location = new System.Drawing.Point(295, 182);
             this.cirDiario.Name = "cirDiario";
             this.cirDiario.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Donut;
             this.cirDiario.ProgressColor = System.Drawing.Color.DarkOrange;
             this.cirDiario.ProgressTextVisible = true;
-            this.cirDiario.Size = new System.Drawing.Size(153, 163);
+            this.cirDiario.Size = new System.Drawing.Size(159, 138);
             this.cirDiario.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirDiario.TabIndex = 12;
             // 
@@ -256,7 +256,7 @@
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX2.Location = new System.Drawing.Point(331, 414);
+            this.labelX2.Location = new System.Drawing.Point(308, 137);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(135, 23);
             this.labelX2.TabIndex = 16;
@@ -269,9 +269,9 @@
             // 
             this.lblObjetivoSemJef.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblObjetivoSemJef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObjetivoSemJef.Location = new System.Drawing.Point(552, 276);
+            this.lblObjetivoSemJef.Location = new System.Drawing.Point(529, 35);
             this.lblObjetivoSemJef.Name = "lblObjetivoSemJef";
-            this.lblObjetivoSemJef.Size = new System.Drawing.Size(221, 32);
+            this.lblObjetivoSemJef.Size = new System.Drawing.Size(221, 23);
             this.lblObjetivoSemJef.TabIndex = 17;
             this.lblObjetivoSemJef.Text = "Semanal Jefe Suc.: $0.0000";
             // 
@@ -282,9 +282,9 @@
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX4.Location = new System.Drawing.Point(35, 270);
+            this.labelX4.Location = new System.Drawing.Point(73, 21);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(247, 49);
+            this.labelX4.Size = new System.Drawing.Size(186, 49);
             this.labelX4.TabIndex = 18;
             this.labelX4.Text = "Objetivos de \r\nPrestamos";
             this.labelX4.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -296,11 +296,12 @@
             // 
             this.lblProyeccionMensual.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblProyeccionMensual.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProyeccionMensual.Location = new System.Drawing.Point(21, 96);
+            this.lblProyeccionMensual.Location = new System.Drawing.Point(27, 484);
             this.lblProyeccionMensual.Name = "lblProyeccionMensual";
-            this.lblProyeccionMensual.Size = new System.Drawing.Size(780, 66);
+            this.lblProyeccionMensual.Size = new System.Drawing.Size(945, 66);
             this.lblProyeccionMensual.TabIndex = 19;
             this.lblProyeccionMensual.Text = "Proyección con lo que llevas hasta hoy llegarias al:: $1000.00 - 99% de objetivo";
+            this.lblProyeccionMensual.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblObjetivoSemCaje
             // 
@@ -309,7 +310,7 @@
             // 
             this.lblObjetivoSemCaje.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblObjetivoSemCaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObjetivoSemCaje.Location = new System.Drawing.Point(767, 276);
+            this.lblObjetivoSemCaje.Location = new System.Drawing.Point(744, 35);
             this.lblObjetivoSemCaje.Name = "lblObjetivoSemCaje";
             this.lblObjetivoSemCaje.Size = new System.Drawing.Size(215, 23);
             this.lblObjetivoSemCaje.TabIndex = 20;
@@ -321,12 +322,12 @@
             // 
             // 
             this.cirSemJefe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cirSemJefe.Location = new System.Drawing.Point(559, 431);
+            this.cirSemJefe.Location = new System.Drawing.Point(536, 186);
             this.cirSemJefe.Name = "cirSemJefe";
             this.cirSemJefe.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Donut;
             this.cirSemJefe.ProgressColor = System.Drawing.Color.DodgerBlue;
             this.cirSemJefe.ProgressTextVisible = true;
-            this.cirSemJefe.Size = new System.Drawing.Size(142, 134);
+            this.cirSemJefe.Size = new System.Drawing.Size(159, 119);
             this.cirSemJefe.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirSemJefe.TabIndex = 21;
             // 
@@ -337,7 +338,7 @@
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX7.Location = new System.Drawing.Point(559, 386);
+            this.labelX7.Location = new System.Drawing.Point(529, 129);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(142, 39);
             this.labelX7.TabIndex = 22;
@@ -350,12 +351,12 @@
             // 
             // 
             this.cirSemCajero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cirSemCajero.Location = new System.Drawing.Point(767, 426);
+            this.cirSemCajero.Location = new System.Drawing.Point(744, 186);
             this.cirSemCajero.Name = "cirSemCajero";
             this.cirSemCajero.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Donut;
             this.cirSemCajero.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.cirSemCajero.ProgressTextVisible = true;
-            this.cirSemCajero.Size = new System.Drawing.Size(142, 134);
+            this.cirSemCajero.Size = new System.Drawing.Size(159, 119);
             this.cirSemCajero.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.cirSemCajero.TabIndex = 23;
             // 
@@ -366,7 +367,7 @@
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX8.Location = new System.Drawing.Point(783, 381);
+            this.labelX8.Location = new System.Drawing.Point(744, 129);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(157, 39);
             this.labelX8.TabIndex = 24;
@@ -380,7 +381,7 @@
             // 
             this.lblAcHoy.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblAcHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAcHoy.Location = new System.Drawing.Point(331, 326);
+            this.lblAcHoy.Location = new System.Drawing.Point(308, 64);
             this.lblAcHoy.Name = "lblAcHoy";
             this.lblAcHoy.Size = new System.Drawing.Size(177, 23);
             this.lblAcHoy.TabIndex = 25;
@@ -393,7 +394,7 @@
             // 
             this.lblAcumuladoJefe.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblAcumuladoJefe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAcumuladoJefe.Location = new System.Drawing.Point(552, 326);
+            this.lblAcumuladoJefe.Location = new System.Drawing.Point(529, 64);
             this.lblAcumuladoJefe.Name = "lblAcumuladoJefe";
             this.lblAcumuladoJefe.Size = new System.Drawing.Size(221, 23);
             this.lblAcumuladoJefe.TabIndex = 26;
@@ -406,7 +407,7 @@
             // 
             this.lblcantidadSemanal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblcantidadSemanal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcantidadSemanal.Location = new System.Drawing.Point(767, 319);
+            this.lblcantidadSemanal.Location = new System.Drawing.Point(744, 62);
             this.lblcantidadSemanal.Name = "lblcantidadSemanal";
             this.lblcantidadSemanal.Size = new System.Drawing.Size(199, 25);
             this.lblcantidadSemanal.TabIndex = 27;
@@ -419,7 +420,7 @@
             // 
             this.lblTotalHoy.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblTotalHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalHoy.Location = new System.Drawing.Point(331, 366);
+            this.lblTotalHoy.Location = new System.Drawing.Point(308, 93);
             this.lblTotalHoy.Name = "lblTotalHoy";
             this.lblTotalHoy.Size = new System.Drawing.Size(177, 24);
             this.lblTotalHoy.TabIndex = 28;
@@ -431,7 +432,8 @@
             // 
             // 
             this.ratingStar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ratingStar1.Location = new System.Drawing.Point(558, 358);
+            this.ratingStar1.IsEditable = false;
+            this.ratingStar1.Location = new System.Drawing.Point(535, 94);
             this.ratingStar1.Name = "ratingStar1";
             this.ratingStar1.NumberOfStars = 10;
             this.ratingStar1.Size = new System.Drawing.Size(143, 23);
@@ -444,7 +446,8 @@
             // 
             // 
             this.ratingStar2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ratingStar2.Location = new System.Drawing.Point(783, 350);
+            this.ratingStar2.IsEditable = false;
+            this.ratingStar2.Location = new System.Drawing.Point(760, 94);
             this.ratingStar2.Name = "ratingStar2";
             this.ratingStar2.NumberOfStars = 10;
             this.ratingStar2.Size = new System.Drawing.Size(151, 23);
@@ -458,10 +461,11 @@
             // 
             // 
             this.ratingTotal.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ratingTotal.Location = new System.Drawing.Point(38, 643);
+            this.ratingTotal.IsEditable = false;
+            this.ratingTotal.Location = new System.Drawing.Point(12, 330);
             this.ratingTotal.Name = "ratingTotal";
             this.ratingTotal.NumberOfStars = 10;
-            this.ratingTotal.Size = new System.Drawing.Size(141, 37);
+            this.ratingTotal.Size = new System.Drawing.Size(162, 37);
             this.ratingTotal.TabIndex = 32;
             this.ratingTotal.TextColor = System.Drawing.Color.Empty;
             this.ratingTotal.TextSpacing = 1;
@@ -473,13 +477,14 @@
             // 
             this.radialMenu1.Colors.RadialMenuItemDisabledForeground = System.Drawing.Color.Empty;
             this.radialMenu1.Diameter = 360;
-            this.radialMenu1.Location = new System.Drawing.Point(190, 643);
+            this.radialMenu1.Location = new System.Drawing.Point(929, 285);
             this.radialMenu1.Name = "radialMenu1";
-            this.radialMenu1.Size = new System.Drawing.Size(24, 24);
+            this.radialMenu1.Size = new System.Drawing.Size(48, 48);
             this.radialMenu1.Symbol = "";
             this.radialMenu1.SymbolSize = 13F;
             this.radialMenu1.TabIndex = 33;
             this.radialMenu1.Text = "radialMenu1";
+            this.radialMenu1.ItemClick += new System.EventHandler(this.radialMenu1_ItemClick);
             // 
             // lblDiasRestantes
             // 
@@ -488,7 +493,7 @@
             // 
             this.lblDiasRestantes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblDiasRestantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiasRestantes.Location = new System.Drawing.Point(652, 19);
+            this.lblDiasRestantes.Location = new System.Drawing.Point(715, 404);
             this.lblDiasRestantes.Name = "lblDiasRestantes";
             this.lblDiasRestantes.Size = new System.Drawing.Size(128, 33);
             this.lblDiasRestantes.TabIndex = 34;
@@ -499,43 +504,51 @@
             // 
             this.btnSaldos.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSaldos.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
-            this.btnSaldos.Location = new System.Drawing.Point(742, 584);
+            this.btnSaldos.Location = new System.Drawing.Point(929, 106);
             this.btnSaldos.Name = "btnSaldos";
-            this.btnSaldos.Size = new System.Drawing.Size(94, 87);
+            this.btnSaldos.Size = new System.Drawing.Size(54, 54);
             this.btnSaldos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnSaldos.SubItemsExpandWidth = 1;
             this.btnSaldos.Symbol = "";
-            this.btnSaldos.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnSaldos.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnSaldos.SymbolSize = 36F;
             this.btnSaldos.TabIndex = 35;
+            this.btnSaldos.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnSaldos.Tooltip = "ENVIAR SALDOS";
+            this.btnSaldos.Click += new System.EventHandler(this.btnSaldos_Click);
             // 
-            // buttonX1
+            // btnPrint
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
-            this.buttonX1.Location = new System.Drawing.Point(855, 584);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(94, 87);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.SubItemsExpandWidth = 1;
-            this.buttonX1.Symbol = "";
-            this.buttonX1.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.buttonX1.SymbolSize = 36F;
-            this.buttonX1.TabIndex = 0;
+            this.btnPrint.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnPrint.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
+            this.btnPrint.Location = new System.Drawing.Point(929, 197);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(54, 54);
+            this.btnPrint.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnPrint.SubItemsExpandWidth = 1;
+            this.btnPrint.Symbol = "";
+            this.btnPrint.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnPrint.SymbolSize = 36F;
+            this.btnPrint.TabIndex = 0;
+            this.btnPrint.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
+            this.btnPrint.Tooltip = "ENVIAR E IMPRIMIR INFORME";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // switchButton1
             // 
+            this.switchButton1.BackColor = System.Drawing.Color.Aqua;
             // 
             // 
             // 
             this.switchButton1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton1.Location = new System.Drawing.Point(331, 639);
+            this.switchButton1.Location = new System.Drawing.Point(724, 2);
             this.switchButton1.Name = "switchButton1";
             this.switchButton1.OffText = "Comprimir";
             this.switchButton1.OnText = "Expandir";
-            this.switchButton1.Size = new System.Drawing.Size(177, 32);
+            this.switchButton1.Size = new System.Drawing.Size(177, 27);
             this.switchButton1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.switchButton1.TabIndex = 36;
+            this.switchButton1.ValueChanged += new System.EventHandler(this.switchButton1_ValueChanged);
             // 
             // prdDiasRestantes
             // 
@@ -543,7 +556,7 @@
             // 
             // 
             this.prdDiasRestantes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.prdDiasRestantes.Location = new System.Drawing.Point(513, 63);
+            this.prdDiasRestantes.Location = new System.Drawing.Point(576, 448);
             this.prdDiasRestantes.MarqueeAnimationSpeed = 800;
             this.prdDiasRestantes.Name = "prdDiasRestantes";
             this.prdDiasRestantes.Size = new System.Drawing.Size(267, 16);
@@ -553,8 +566,8 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::EKGADGET.WinForms.Properties.Resources.grafica;
-            this.pictureBox5.Location = new System.Drawing.Point(17, 259);
+            this.pictureBox5.Image = global::EKGADGET.WinForms.Properties.Resources.chart_1_111423;
+            this.pictureBox5.Location = new System.Drawing.Point(9, 14);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(73, 68);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -564,29 +577,19 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::EKGADGET.WinForms.Properties.Resources.sucursal;
-            this.pictureBox4.Location = new System.Drawing.Point(21, 171);
+            this.pictureBox4.Location = new System.Drawing.Point(27, 556);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(68, 71);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 43;
             this.pictureBox4.TabStop = false;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::EKGADGET.WinForms.Properties.Resources.categoria;
-            this.pictureBox3.Location = new System.Drawing.Point(819, 89);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(75, 73);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 42;
-            this.pictureBox3.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::EKGADGET.WinForms.Properties.Resources.storia_icona;
-            this.pictureBox2.Location = new System.Drawing.Point(819, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(870, 409);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(75, 73);
+            this.pictureBox2.Size = new System.Drawing.Size(74, 66);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 41;
             this.pictureBox2.TabStop = false;
@@ -594,7 +597,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::EKGADGET.WinForms.Properties.Resources.calendario;
-            this.pictureBox1.Location = new System.Drawing.Point(21, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(27, 409);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(68, 66);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -603,7 +606,7 @@
             // 
             // piclLogo
             // 
-            this.piclLogo.Location = new System.Drawing.Point(819, 171);
+            this.piclLogo.Location = new System.Drawing.Point(868, 553);
             this.piclLogo.Name = "piclLogo";
             this.piclLogo.Size = new System.Drawing.Size(75, 74);
             this.piclLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -619,28 +622,39 @@
             this.btnClose.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(918, 12);
+            this.btnClose.Location = new System.Drawing.Point(945, 10);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(27, 24);
             this.btnClose.TabIndex = 37;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // GadgetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 677);
+            this.ClientSize = new System.Drawing.Size(984, 641);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.piclLogo);
             this.Controls.Add(this.prdDiasRestantes);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.switchButton1);
-            this.Controls.Add(this.buttonX1);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnSaldos);
             this.Controls.Add(this.lblDiasRestantes);
             this.Controls.Add(this.radialMenu1);
@@ -675,12 +689,14 @@
             this.DoubleBuffered = true;
             this.EnableGlass = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1000, 680);
+            this.MinimumSize = new System.Drawing.Size(1000, 408);
             this.Name = "GadgetForm";
             this.Text = "Gadget SEMP";
             this.Load += new System.EventHandler(this.GadgetForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.piclLogo)).EndInit();
@@ -722,15 +738,16 @@
         private DevComponents.DotNetBar.RadialMenu radialMenu1;
         private DevComponents.DotNetBar.LabelX lblDiasRestantes;
         private DevComponents.DotNetBar.ButtonX btnSaldos;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnPrint;
         private DevComponents.DotNetBar.Controls.SwitchButton switchButton1;
         private DevComponents.DotNetBar.Controls.ReflectionImage btnClose;
         private DevComponents.DotNetBar.Controls.ProgressBarX prdDiasRestantes;
         private System.Windows.Forms.PictureBox piclLogo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Timer timer1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -179,7 +179,7 @@ namespace EKGADGET.WinForms
             var sucursal = db.Localidades.Where(r => r.impresora == "RAIZ").First();
 
             localidad = sucursal.LOCALIDAD;
-            ano = "Ano: " + DateTime.Now.Year;
+            ano = "Año: " + DateTime.Now.Year;
             mes = "Mes: " + DateTime.Now.ToString("MMMM");
             fecha = "Fecha: " + DateTime.Now.ToString(string.Format("dddd{2} dd {2}{0} MMMM {2}{1} yyyy", "De", "Del"," ")); 
             miSucursal = "Sucursal: \n" + sucursal.Nombre_Sucursal;
@@ -417,6 +417,8 @@ namespace EKGADGET.WinForms
 
 
         }
+
+       
         #endregion
 
     }

@@ -17,6 +17,7 @@ namespace EKGADGET.WinForms
     using System.Windows.Forms;
     using DevComponents.DotNetBar;
     using EKGADGET.WinForms.Context;
+    using EKGADGET.WinForms.Views;
 
     #endregion
     public partial class GadgetForm : DevComponents.DotNetBar.Office2007Form
@@ -44,13 +45,16 @@ namespace EKGADGET.WinForms
         public GadgetForm()
         {
             InitializeComponent();
-            datosGadget = new DatosGadget();
+          
            // prestamosTipos = new DataTable();
         }
         private void StartGadget()
         {
             try
             {
+                datosGadget = new DatosGadget();
+                datosGadgetResultados = new DataTable();
+                prestamosTipos = new DataTable();
 
                 string[] rango = new string[3];
                 string[] rangoObjetivos = new string[7];
@@ -76,6 +80,17 @@ namespace EKGADGET.WinForms
 
                 datosGadgetResultados = datosGadget.Result(inicioFecha, finFecha, hoyFecha, rango[0], rango[1]);
                 prestamosTipos= datosGadget.prestamostipo(inicioFecha, finFecha);
+
+
+
+                prestamosMes = 0;
+                prestamosHoy = 0;
+                prestamosMensual = 0;
+                prestamosJefe = 0;
+                prestamosCajero = 0;
+                diasOperativos = 0;
+                prestamosEstaSemana = 0;
+                cantidadSemanal = 0; 
 
                 prestamosMes = decimal.Parse(datosGadgetResultados.Rows[0][0].ToString());
                 prestamosHoy = decimal.Parse(datosGadgetResultados.Rows[0][2].ToString());
@@ -232,6 +247,52 @@ namespace EKGADGET.WinForms
         {
 
         }
+
+        private void btnSaldos_Click(object sender, EventArgs e)
+        {
+            //Enviar Resultados Finales o Saldos
+
+            SaldosForm saldosForm = new SaldosForm();
+            saldosForm.ShowDialog();
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+        //compresion y abertura de ventana
+        private void switchButton1_ValueChanged(object sender, EventArgs e)
+        {
+            if (switchButton1.Value == false)
+            {
+                this.Size = new Size(1000, 680);
+
+            }
+            else
+            {
+                this.Size = new Size(1000, 408);
+            }
+
+            
+        }
+
+        private void radialMenu1_ItemClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            StartGadget();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+           
+        }
+
+       
 
         #endregion
 
