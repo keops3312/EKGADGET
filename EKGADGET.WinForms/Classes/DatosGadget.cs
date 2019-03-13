@@ -189,6 +189,8 @@ namespace EKGADGET.WinForms
 
         }
 
+        
+
         public DataTable Result(string dateStart, string dateEnd, string hoy, string InicioSemana, string FinSemana)
         {
 

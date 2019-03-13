@@ -2,23 +2,18 @@
 
 namespace EKGADGET.WinForms
 {
-   
+
 
     #region Libraries (Librerias)
-
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
     using DevComponents.DotNetBar;
     using EKGADGET.WinForms.Context;
     using EKGADGET.WinForms.Views;
-
     #endregion
     public partial class GadgetForm : DevComponents.DotNetBar.Office2007Form
     {
@@ -27,26 +22,28 @@ namespace EKGADGET.WinForms
         private DatosGadget datosGadget;
         private DataTable datosGadgetResultados;
         private DataTable prestamosTipos;
+        private SQLContext db;
         #endregion
 
         #region Attributes (atributos)
         private string inicioFecha,finFecha,hoyFecha;
-        private decimal prestamosMes;
-        private decimal prestamosHoy;
-        private decimal prestamosMensual;
-        private decimal prestamosJefe;
-        private decimal prestamosCajero;
-        private int diasOperativos;
-        private int cantidadSemanal;
-        private decimal prestamosEstaSemana;
+        private decimal prestamosMes=0;
+        private decimal prestamosHoy = 0;
+        private decimal prestamosMensual = 0;
+        private decimal prestamosJefe = 0;
+        private decimal prestamosCajero = 0;
+        private int diasOperativos = 0;
+        private int cantidadSemanal = 0;
+        private decimal prestamosEstaSemana = 0;
+        private int diasRestantes = 0;
+        private int cHoy = 0;
+        private int prestamosCHoy = 0;
         #endregion
 
         #region Methods (Metodos)
         public GadgetForm()
         {
             InitializeComponent();
-          
-           // prestamosTipos = new DataTable();
         }
         private void StartGadget()
         {
@@ -102,10 +99,16 @@ namespace EKGADGET.WinForms
                 cantidadSemanal = int.Parse(datosGadgetResultados.Rows[0][5].ToString());
 
                 lblAcumuladoHastaHoy.Text = "Acumulado Hasta Hoy: " + string.Format("{0:C2}", prestamosMes);
+
                 lblTotalOperacionesPrestamos.Text = "Total de Prestamos Hasta Hoy: " + datosGadgetResultados.Rows[0][1].ToString();
 
+                cHoy =int.Parse(datosGadgetResultados.Rows[0][1].ToString());
+
                 lblAcHoy.Text = "Hoy lleva: " + string.Format("{0:C2}", prestamosHoy);
+
+                
                 lblTotalHoy.Text = "Prestamos Hoy: " + datosGadgetResultados.Rows[0][3].ToString();
+                prestamosCHoy= int.Parse(datosGadgetResultados.Rows[0][3].ToString());
 
                 lblMensual.Text = "Mensual: " + string.Format("{0:C2}", prestamosMensual);
 
@@ -126,6 +129,7 @@ namespace EKGADGET.WinForms
                 lblProyeccionMensual.Text = "Con esta Racha llegaras a fin de mes a: " +
                                 "<b> " + string.Format("{0:C2}",proyeccion) + " </b>"+ " - " + "<b> " + string.Format("{0:N2}", porcentaje) + " </b>"+ " % de objetivo";
 
+                diasRestantes = diasOperativos - int.Parse(rango[2]);
                 lblDiasRestantes.Text = "Dias Restantes: "+ "\n" + Convert.ToString(diasOperativos - int.Parse(rango[2]));
 
                 lblHaceUnAño.Text = "Hace un Año hiciste: " + 
@@ -243,57 +247,6 @@ namespace EKGADGET.WinForms
           
         }
 
-        private void lblHaceUnAño_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSaldos_Click(object sender, EventArgs e)
-        {
-            //Enviar Resultados Finales o Saldos
-
-            SaldosForm saldosForm = new SaldosForm();
-            saldosForm.ShowDialog();
-
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-
-        }
-        //compresion y abertura de ventana
-        private void switchButton1_ValueChanged(object sender, EventArgs e)
-        {
-            if (switchButton1.Value == false)
-            {
-                this.Size = new Size(1000, 680);
-
-            }
-            else
-            {
-                this.Size = new Size(1000, 408);
-            }
-
-            
-        }
-
-        private void radialMenu1_ItemClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            StartGadget();
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-           
-        }
-
-       
-
         #endregion
 
         #region Events (Eventos)
@@ -313,13 +266,95 @@ namespace EKGADGET.WinForms
            
         }
 
-       
-
         //Close Solution
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        } 
+        }
+
+        //Envio de Saldos
+        private void btnSaldos_Click(object sender, EventArgs e)
+        {
+            //Enviar Resultados Finales o Saldos
+
+            SaldosForm saldosForm = new SaldosForm();
+            saldosForm.sucursal = lblSucursal.Text;
+            saldosForm.ShowDialog();
+
+        }
+
+        //Envio de Reporte
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //Crear Reporte de Avances y Resultados
+            ResultadosForm resultadosForm = new ResultadosForm();
+            db = new SQLContext();
+            var sucursal = db.Localidades.Where(r => r.impresora == "RAIZ").First();
+            resultadosForm.sucursal=sucursal.Nombre_Sucursal;
+            resultadosForm.marca=sucursal.Marca;
+            resultadosForm.empresa=sucursal.Empresa;
+            resultadosForm.jefe = sucursal.ENCARGADO;
+            resultadosForm.direccion = sucursal.DIRECCION;
+
+            resultadosForm.objetivoMensual= string.Format("{0:C2}", prestamosMensual);
+            resultadosForm.objetivoSemanalJef= string.Format("{0:C2}", prestamosJefe);
+            resultadosForm.objetivoSemanalCajero= string.Format("{0:C2}", prestamosCajero);
+            resultadosForm.mesOperativo=lblMes.Text;
+           
+
+            resultadosForm.anoOperativo=DateTime.Now.Year.ToString();
+            resultadosForm.diasOperativos=diasOperativos.ToString();
+            resultadosForm.totalHoy= string.Format("{0:C2}", prestamosMes);
+            resultadosForm.diasRestantes=diasRestantes.ToString();
+            resultadosForm.racha=lblProyeccionMensual.Text;
+
+           
+
+            resultadosForm.cHoy = cHoy.ToString();
+            resultadosForm.aSemana = string.Format("{0:c2}", prestamosEstaSemana);
+            resultadosForm.cSemana = cantidadSemanal.ToString();
+
+           
+
+            resultadosForm.acumuladoHoy = string.Format("{0:C2}", prestamosHoy);
+            resultadosForm.prestamosHoy = prestamosCHoy.ToString();
+
+
+            resultadosForm.ShowDialog();
+        }
+        
+        //compresion y abertura de ventana
+        private void switchButton1_ValueChanged(object sender, EventArgs e)
+        {
+            if (switchButton1.Value == false)
+            {
+                this.Size = new Size(1000, 680);
+
+            }
+            else
+            {
+                this.Size = new Size(1000, 408);
+            }
+
+
+        }
+
+       
+        //actualizacion en segundo plano
+        private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        //Timer para que lo haga por x tiempo
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            StartGadget();
+        }
+
+        
+
+
         #endregion
     }
 }

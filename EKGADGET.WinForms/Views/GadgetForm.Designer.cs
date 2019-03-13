@@ -65,14 +65,14 @@
             this.btnPrint = new DevComponents.DotNetBar.ButtonX();
             this.switchButton1 = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.prdDiasRestantes = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.piclLogo = new System.Windows.Forms.PictureBox();
             this.btnClose = new DevComponents.DotNetBar.Controls.ReflectionImage();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -171,7 +171,6 @@
             this.lblHaceUnAño.Size = new System.Drawing.Size(345, 74);
             this.lblHaceUnAño.TabIndex = 7;
             this.lblHaceUnAño.Text = "El Mes anterior (2018)  hiciste: $0000.000";
-            this.lblHaceUnAño.Click += new System.EventHandler(this.lblHaceUnAño_Click);
             // 
             // lblObjetivoDiario
             // 
@@ -484,7 +483,6 @@
             this.radialMenu1.SymbolSize = 13F;
             this.radialMenu1.TabIndex = 33;
             this.radialMenu1.Text = "radialMenu1";
-            this.radialMenu1.ItemClick += new System.EventHandler(this.radialMenu1_ItemClick);
             // 
             // lblDiasRestantes
             // 
@@ -511,9 +509,8 @@
             this.btnSaldos.SubItemsExpandWidth = 1;
             this.btnSaldos.Symbol = "";
             this.btnSaldos.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnSaldos.SymbolSize = 36F;
+            this.btnSaldos.SymbolSize = 24F;
             this.btnSaldos.TabIndex = 35;
-            this.btnSaldos.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.btnSaldos.Tooltip = "ENVIAR SALDOS";
             this.btnSaldos.Click += new System.EventHandler(this.btnSaldos_Click);
             // 
@@ -528,9 +525,8 @@
             this.btnPrint.SubItemsExpandWidth = 1;
             this.btnPrint.Symbol = "";
             this.btnPrint.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnPrint.SymbolSize = 36F;
+            this.btnPrint.SymbolSize = 24F;
             this.btnPrint.TabIndex = 0;
-            this.btnPrint.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Left;
             this.btnPrint.Tooltip = "ENVIAR E IMPRIMIR INFORME";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -563,6 +559,18 @@
             this.prdDiasRestantes.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.prdDiasRestantes.TabIndex = 38;
             this.prdDiasRestantes.Value = 30;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork_1);
             // 
             // pictureBox5
             // 
@@ -627,18 +635,6 @@
             this.btnClose.Size = new System.Drawing.Size(27, 24);
             this.btnClose.TabIndex = 37;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // GadgetForm
             // 
