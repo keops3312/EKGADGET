@@ -85,34 +85,57 @@ namespace EKGADGET.WinForms.Views
 
 
         }
+
+
+        private void UpdateSaldos()
+        {
+            try
+            {
+                circularProgress1.Visible = false;
+                DataTable saldos = new DataTable();
+                saldos = saldosGadget.Saldos();
+
+                if (saldos.Rows.Count != 1)
+                {
+                    txtSaldoC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
+                    lblC1.Text = saldos.Rows[0][0].ToString();
+                    txtSaldoC2.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[1][1].ToString()));
+                    lblC2.Text = saldos.Rows[1][0].ToString();
+                    TotalC1 = decimal.Parse(saldos.Rows[0][1].ToString());
+                    TotalC2 = decimal.Parse(saldos.Rows[1][1].ToString());
+                    txtRestaC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
+                    txtRestaC2.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[1][1].ToString()));
+                    efectivo1 = decimal.Parse(saldos.Rows[0][1].ToString());
+                    efectivo2 = decimal.Parse(saldos.Rows[1][1].ToString());
+                }
+                else
+                {
+                    TotalC1 = decimal.Parse(saldos.Rows[0][1].ToString());
+                    txtSaldoC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
+                    lblC1.Text = saldos.Rows[0][0].ToString();
+                    txtRestaC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
+                    efectivo1 = decimal.Parse(saldos.Rows[0][1].ToString());
+                }
+
+                OperacionSaldos();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+          
+        }
         #endregion
 
         #region Events (Eventos)
-
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateSaldos();
+        }
         private void SaldosForm_Load(object sender, EventArgs e)
         {
-            circularProgress1.Visible = false;
-            DataTable saldos = new DataTable();
-            saldos = saldosGadget.Saldos();
-
-            if (saldos.Rows.Count != 1)
-            {
-                txtSaldoC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
-                lblC1.Text = saldos.Rows[0][0].ToString();
-                txtSaldoC2.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[1][1].ToString()));
-                lblC2.Text = saldos.Rows[1][0].ToString();
-                TotalC1 = decimal.Parse(saldos.Rows[0][1].ToString());
-                TotalC2 = decimal.Parse(saldos.Rows[1][1].ToString());
-                txtRestaC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
-                txtRestaC2.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[1][1].ToString()));
-            }
-            else
-            {
-                TotalC1 = decimal.Parse(saldos.Rows[0][1].ToString());
-                txtSaldoC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
-                lblC1.Text = saldos.Rows[0][0].ToString();
-                txtRestaC1.Text = string.Format("{0:C2}", decimal.Parse(saldos.Rows[0][1].ToString()));
-            }
+            UpdateSaldos();
 
         }
 
@@ -307,6 +330,8 @@ namespace EKGADGET.WinForms.Views
                 }
 
                 ////ENVIAMOS LOS SALDOS AL CORREO
+                circularProgress1.Visible = true;
+                circularProgress1.IsRunning = true;
                 backgroundWorker1.RunWorkerAsync();
                
             }
@@ -346,8 +371,7 @@ namespace EKGADGET.WinForms.Views
         #region BackGround (Hilos)
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            circularProgress1.Visible = true;
-            circularProgress1.IsRunning = true;
+           
             //ENVIAMOS LOS SALDOS AL CORREO
             saldosGadget.EnviarSaldos(sucursal,
                 TotalC1, TotalC2,
@@ -356,6 +380,7 @@ namespace EKGADGET.WinForms.Views
 
         private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
+            circularProgress1.Visible = true;
             circularProgress1.IsRunning = true;
         }
 
@@ -368,7 +393,9 @@ namespace EKGADGET.WinForms.Views
                 MessageBoxIcon.Information);
             circularProgress1.Visible = false;
             circularProgress1.IsRunning = false;
-        } 
+        }
         #endregion
+
+       
     }
 }

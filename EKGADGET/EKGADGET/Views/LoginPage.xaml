@@ -3,37 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EKGADGET.Views.LoginPage">
     <ContentPage.Content>
-        <StackLayout>
+        
+            <StackLayout Padding="10,20,10,5" BackgroundColor="#343131">
 
 
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry>
+                <StackLayout 
+                             >
 
-            </Entry>
-            <Entry>
+                    <Image
+                    Source="logotipo" 
+                    WidthRequest="100" 
+                    HeightRequest="100" 
+                    Aspect="AspectFill"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="CenterAndExpand" />
+                    <Label Text="EK GADGET"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
 
-            </Entry>
-            <Button>
 
-            </Button>
-            <Image>
+                <Grid BackgroundColor="Gray">
+                    <BoxView BackgroundColor="#2c3e50"
+                         CornerRadius="10"></BoxView>
+                    <Grid Margin="5" >
 
-            </Image>
-        </StackLayout>
+
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*"/>
+
+
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <Image Grid.Row="0"
+                       Grid.Column="0"
+                       Source="usuario"
+                       WidthRequest="24"/>
+                        <Entry Grid.Row="1"
+                       Grid.Column="0"  
+                       Placeholder="usuario"
+                       BackgroundColor ="#2c3e50"
+                       PlaceholderColor="White"
+                       HorizontalTextAlignment="Center"/>
+
+                        <Image Grid.Row="2"
+                       Grid.Column="0"
+                       WidthRequest="24"
+                    Source="contrasena"/>
+
+                    <Frame CornerRadius="20"
+                           
+         
+                           Grid.Row="3"
+                           Grid.Column="0" BackgroundColor="White" >
+
+
+
+                        <Entry 
+                       IsPassword="True"
+                       Placeholder="password"
+                       BackgroundColor ="#2c3e50"
+                       PlaceholderColor="White"
+                       HorizontalTextAlignment="Center"/>
+
+                    </Frame>
+
+
+
+
+
+
+
+
+                </Grid>
+
+
+
+                </Grid>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label HorizontalOptions="StartAndExpand"
+                       Text="Rememberme in this device"
+                       VerticalOptions="Center"></Label>
+                    <Switch HorizontalOptions="End"></Switch>
+
+                </StackLayout>
+
+
+                <ActivityIndicator />
+
+
+                <StackLayout Margin="10,0">
+
+                    <ImageButton Source="entrar"
+                             WidthRequest="48"/>
+
+                </StackLayout>
+
+
+
+
+            </StackLayout>
+       
+    
     </ContentPage.Content>
-
 </ContentPage>

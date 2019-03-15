@@ -107,6 +107,14 @@
   <ItemGroup>
     <Compile Include="Classes\DatosGadget.cs" />
     <Compile Include="Classes\SaldosGadget.cs" />
+    <Compile Include="Data\DataSetPrestamos.cs">
+      <DependentUpon>DataSetPrestamos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DataSetPrestamos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPrestamos.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\abono.cs" />
     <Compile Include="Models\almacenaje.cs" />
     <Compile Include="Models\anterior_abono.cs" />
@@ -267,6 +275,17 @@
     <EmbeddedResource Include="Views\SaldosForm.resx">
       <DependentUpon>SaldosForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Data\DataSetPrestamos.xsc">
+      <DependentUpon>DataSetPrestamos.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DataSetPrestamos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPrestamos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\DataSetPrestamos.xss">
+      <DependentUpon>DataSetPrestamos.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -317,6 +336,7 @@
     <None Include="Resources\money.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\anterior.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

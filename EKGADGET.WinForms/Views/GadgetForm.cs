@@ -13,6 +13,7 @@ namespace EKGADGET.WinForms
     using System.Windows.Forms;
     using DevComponents.DotNetBar;
     using EKGADGET.WinForms.Context;
+    using EKGADGET.WinForms.Data;
     using EKGADGET.WinForms.Views;
     #endregion
     public partial class GadgetForm : DevComponents.DotNetBar.Office2007Form
@@ -23,6 +24,7 @@ namespace EKGADGET.WinForms
         private DataTable datosGadgetResultados;
         private DataTable prestamosTipos;
         private SQLContext db;
+        private DataTable prestamosTiposTabla; 
         #endregion
 
         #region Attributes (atributos)
@@ -206,11 +208,18 @@ namespace EKGADGET.WinForms
 
                 //ahora muestro los prestamos por tipo
                 radialMenu1.Items.Clear();
+
+                prestamosTiposTabla = new DataTable("Prestamos");
+                prestamosTiposTabla.Columns.Add("Tipo");
+                prestamosTiposTabla.Columns.Add("Prestamo");
+                prestamosTiposTabla.Columns.Add("Cantidad");
+
                 if (prestamosTipos.Rows.Count > 0)
                 {
                     string avaluoTipo, cantidadTipo;
                     decimal prestamoTipo;
                    
+
                     foreach (DataRow item in prestamosTipos.Rows)
                     {
                         //create item
@@ -227,11 +236,13 @@ namespace EKGADGET.WinForms
 
 
                         radialMenu1.Items.Add(items);
+
+                        prestamosTiposTabla.Rows.Add(avaluoTipo,prestamoTipo, cantidadTipo);
                     }
 
                 }
 
-
+               
 
 
 
@@ -319,6 +330,9 @@ namespace EKGADGET.WinForms
             resultadosForm.acumuladoHoy = string.Format("{0:C2}", prestamosHoy);
             resultadosForm.prestamosHoy = prestamosCHoy.ToString();
 
+         
+            resultadosForm.prestamoTipo = prestamosTiposTabla;
+
 
             resultadosForm.ShowDialog();
         }
@@ -343,13 +357,25 @@ namespace EKGADGET.WinForms
         //actualizacion en segundo plano
         private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
         {
-
+            try
+            {
+                //Write what you want to do
+                StartGadget();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:\n\n" + ex.Message, "System", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //Timer para que lo haga por x tiempo
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             StartGadget();
+            //backgroundWorker1.RunWorkerAsync();
+
+            
         }
 
         

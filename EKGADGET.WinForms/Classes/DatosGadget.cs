@@ -1,17 +1,18 @@
-﻿using EDsemp.Classes;
-using EKGADGET.WinForms.Context;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace EKGADGET.WinForms
 {
+    #region Libraries (librerias)
+    using System;
+    using System.Data;
+    using System.IO;
+    using System.Linq;
+    using EDsemp.Classes;
+    using EKGADGET.WinForms.Context;
+    using MySql.Data.MySqlClient; 
+    #endregion
+
+
+
     public class DatosGadget
     {
         #region Properties (Propiedades)
