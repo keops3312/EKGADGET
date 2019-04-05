@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="EKGADGET.Views.LoginPage">
     <ContentPage.Content>
-        
-            <StackLayout Padding="10,20,10,5" BackgroundColor="#343131">
+        <ScrollView>
+
+            <StackLayout Padding="10,20,10,5">
 
 
                 <StackLayout 
@@ -14,8 +16,7 @@
                     Source="logotipo" 
                     WidthRequest="100" 
                     HeightRequest="100" 
-                    Aspect="AspectFill"
-                    VerticalOptions="Start" 
+                    VerticalOptions="Center" 
                     HorizontalOptions="CenterAndExpand" />
                     <Label Text="EK GADGET"
                    FontAttributes="Bold"
@@ -25,7 +26,7 @@
                 </StackLayout>
 
 
-                <Grid BackgroundColor="Gray">
+                <Grid>
                     <BoxView BackgroundColor="#2c3e50"
                          CornerRadius="10"></BoxView>
                     <Grid Margin="5" >
@@ -57,22 +58,16 @@
                        WidthRequest="24"
                     Source="contrasena"/>
 
-                    <Frame CornerRadius="20"
-                           
-         
-                           Grid.Row="3"
-                           Grid.Column="0" BackgroundColor="White" >
-
-
 
                         <Entry 
+                             Grid.Row="3"
+                           Grid.Column="0"
                        IsPassword="True"
                        Placeholder="password"
                        BackgroundColor ="#2c3e50"
                        PlaceholderColor="White"
                        HorizontalTextAlignment="Center"/>
 
-                    </Frame>
 
 
 
@@ -81,7 +76,7 @@
 
 
 
-                </Grid>
+                    </Grid>
 
 
 
@@ -99,10 +94,14 @@
                 <ActivityIndicator />
 
 
-                <StackLayout Margin="10,0">
+                <StackLayout Margin="40,0"
+                             Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
 
-                    <ImageButton Source="entrar"
-                             WidthRequest="48"/>
+                    <Button Text="Entrar"
+                             CornerRadius="20"
+                            BackgroundColor="Navy"
+                            TextColor="White"/>
 
                 </StackLayout>
 
@@ -110,6 +109,9 @@
 
 
             </StackLayout>
+
+        </ScrollView>
+          
        
     
     </ContentPage.Content>
