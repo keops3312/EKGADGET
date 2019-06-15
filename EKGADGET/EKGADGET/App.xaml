@@ -5,7 +5,25 @@
              x:Class="EKGADGET.App">
     <Application.Resources>
         <ResourceDictionary>
+         
             <infra:InstanceLocator x:Key="Locator"/>
+
+
+            <!--USAR PARAMETROS-->
+            <x:String x:Key="UrlAPI">http://192.168.1.79:16006</x:String>
+            <x:String x:Key="UrlPrefix">/api</x:String>
+            <x:String x:Key="UrlUsersController">/Security/login</x:String>
+            <x:String x:Key="UrlSucursalesController">/Sucursales</x:String>
+
+
+            <!--Styles-->
+            <!--<Style TargetType="Label" >
+                <Setter Property="FontFamily" Value="nasalization-rg.ttf#nasalization-rg.ttf"/>
+            </Style>
+            <Style TargetType="Entry" >
+                <Setter Property="FontFamily" Value="nasalization-rg.ttf#nasalization-rg.ttf"/>
+            </Style>-->
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

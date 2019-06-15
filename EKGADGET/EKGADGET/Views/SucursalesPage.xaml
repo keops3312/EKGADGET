@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             x:Class="EKGADGET.Views.SucursalesPage">
+    <ContentPage.Content>
+
+
+        <StackLayout BindingContext="{Binding Sucursales}"
+                     BackgroundColor="White"
+                     Padding="15,15,15,15">
+
+            <SearchBar
+                Placeholder="escriba para buscar sucursal"
+                Text="{Binding Filter, Mode=TwoWay}"
+                SearchCommand="{Binding SearchSucursalCommand}"
+                BackgroundColor="White"
+                TextColor="Black">
+
+            </SearchBar>
+
+
+            <ListView
+                ItemsSource="{Binding Sucursales}"
+                HasUnevenRows="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                    >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--<ViewCell.ContextActions>
+
+                                <MenuItem Text="Editar" Command="{Binding EditProductCommand}"/>
+
+                            </ViewCell.ContextActions>-->
+                            <Grid>
+                                <Grid.GestureRecognizers>
+
+                                    <!--<TapGestureRecognizer Command="{Binding EditSucursalCommand}">
+
+                                    </TapGestureRecognizer>-->
+
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    WidthRequest="64"
+                                    Source="{Binding marca}">
+
+                                </Image>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    VerticalOptions="StartAndExpand"
+                                    >
+                                    <Label
+                                    
+                                    Text="{Binding nombreSucursal}"
+                                    TextColor="Black"
+                                    ></Label>
+                                    <Label
+                                    Text="{Binding encargado}"
+                                    TextColor="Black"
+                                    ></Label>
+                                    <Label
+                                    
+                                    Text="{Binding ObjetivoMesC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    TextColor="Black"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    ></Label>
+                                    <Label
+                                    
+                                    Text="{Binding ObjetivoSemanalC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    TextColor="Black"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    ></Label>
+                                    <Label
+                                    
+                                    Text="{Binding ObjetivoSemanalJefeC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    TextColor="Black"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    ></Label>
+                                    <Label
+                                    
+                                    Text="{Binding diasOperaMes, StringFormat='Dias de Operacion: {0}'}"
+                                    TextColor="Black"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    ></Label>
+
+
+
+
+                                </StackLayout>
+                                <Image Source="editS"
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       WidthRequest="48"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="End">
+                                    
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                                 NumberOfTapsRequired="1" 
+                                             Command="{Binding EditSucursalCommand}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                             
+
+                            </Grid>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

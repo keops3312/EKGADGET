@@ -1,0 +1,271 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<EKGADGET.Common.Models.Sucursales>
+
+@using EKGADGET.Backend.Models.Security
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>EKGADGET-SUCURSALES</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/clouds/48/000000/place-marker.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <!--<link rel="stylesheet" type="text/css" href="~/Login//css-hamburgers/hamburgers.min.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/css/main.css">
+    <!--===============================================================================================-->
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/js/main.js"></script>
+
+
+    <style>
+        .jumbotron {
+            padding: 25px; /*2rem 1rem*/
+            margin-bottom: 2rem;
+            border-radius: 0.3rem;
+            background: #000064; /* old browsers fallback color*/
+            background: -webkit-linear-gradient(to right, #1BADD8, #00003E);
+            background: linear-gradient(to right, #1BADD8, #00003E);
+        }
+
+        .hd1 {
+            color: #fff;
+        }
+        
+        
+        p{
+            color:whitesmoke;
+        }
+
+        
+        
+    </style>
+
+</head>
+<body style="padding:25px;background-color:#dbdcdd">
+
+
+   
+        <div class="jumbotron">
+            <h1 class="hd1">BIENVENIDO(A)</h1>
+            <p class="lead hd1"> @SimpleSessionPersister.Username</p>
+            <hr class="my-4">
+            <p class="hd1">Selecciona una sucursal para cambiar los objetivos del mes</p>
+            <p class="lead">
+                <a class="btn btn-primary"
+                   href="/Accounts/Logout">
+                    <span class="fa glyphicon-fast-backward"></span> Cerrar Session
+                </a>
+                @*<a class="btn btn-light btn-lg" href="#" role="button">More Info</a>
+                    <a class="btn btn-success btn-lg" href="#" role="button">Buy Now</a>*@
+            </p>
+        </div>
+   
+
+   
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <tr style="text-align:center;background-color:black">
+
+                <th>
+                    <p>Loc.</p>
+                </th>
+                <th>
+                    <p>Sucursal</p>
+                </th>
+                <th>
+                    <p>Gerente</p>
+                </th>
+                <th>
+                    <p>Marca</p>
+                </th>
+                <th>
+                    <p>Empresa</p>
+                </th>
+                <th>
+                    <p>Dias Operacion</p>
+                </th>
+                <th>
+                    <p>Objetivo Mensual</p>
+                </th>
+                <th>
+                    <p>Objetivo Sem. Cajero</p>
+                </th>
+                <th>
+                    <p>Objetivo Sem. Jefe</p>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.localidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreSucursal)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.encargado)
+                    </td>
+
+
+                
+                    <td>
+                        @Html.DisplayFor(modelItem => item.marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.empresa)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.diasOperaMes)
+                    </td>
+                    <td>
+                        @{
+                            decimal mes;
+                            mes = decimal.Parse(item.objetivoMes);
+
+                        }
+                        <p class="text-success" style="font-weight:bold;font-size:large">@string.Format("{0:C}", mes)</p>
+
+                    </td>
+                    <td>
+                        @{
+                            decimal sem;
+                            sem = decimal.Parse(item.ObjetivoSemanal);
+
+                        }
+                        <p class="text-info" style="font-weight:bold;font-size:large">@string.Format("{0:C}", sem)</p>
+                    </td>
+                    <td>
+                        @{
+                            decimal semJ;
+                            semJ = decimal.Parse(item.ObjetivoSemanalJefe);
+
+                        }
+                        <p class="text-danger" style="font-weight:bold;font-size:large">@string.Format("{0:C}", semJ)</p>
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-dark" id="Details" name="Details"
+                                data-toggle="modal"
+                                data-url="@Url.Action("Details", "Sucursales", new { id = item.localidadId })">
+                            <span class="fa fa-search"></span> Ver
+
+                        </button>
+                        &nbsp;|&nbsp;
+                        <button type="button" class="btn btn-success" id="Edit" name="Edit"
+                                data-toggle="modal"
+                                data-url="@Url.Action("Edit", "Sucursales", new { id = item.localidadId })">
+                            <span class="fa fa-edit"></span> Editar
+
+                        </button>
+
+                    </td>
+
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $(function () {
+
+                $('.btn-dark').on('click', function (e) {
+                    e.preventDefault();
+
+                    $("#modalEdit").remove();
+
+                    $.get($(this).data("url"), function (data) {
+
+                        $('<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog" aria-labelledby="DetailsModalCenterTitle" aria-hidden="true">' +
+                            '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                            data + '</div></div>').modal();
+
+
+                    });
+                });
+
+
+            });
+
+            $(function () {
+
+                $('.btn-success').on('click', function (e) {
+                    e.preventDefault();
+
+                    $("#modalEdit").remove();
+
+                    $.get($(this).data("url"), function (data) {
+
+                        $('<div class="modal fade" id="DetailsModal" tabindex="-1" role="dialog" aria-labelledby="DetailsModalCenterTitle" aria-hidden="true">' +
+                            '<div class="modal-dialog modal-dialog-centered" role="document">' +
+                            data + '</div></div>').modal();
+
+
+                    });
+                });
+
+            });
+
+
+
+
+        });
+
+
+
+
+    </script>
+    <div id="modalEdit" class="modal fade" tabindex="-1" role="dialog">
+        <a href="#close" title="Close" class="modal-close-btn">X</a>
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
+
+

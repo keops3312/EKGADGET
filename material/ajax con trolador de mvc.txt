@@ -1,0 +1,28 @@
+  //SEARCH USER
+                    //var formData1 = new FormData($('#LoginData')[0]);
+                    //$.ajax({
+                    //    cache: false,
+                    //    type: "POST",
+                    //    url: "/Accounts/Login",
+                    //    data: formData1,
+                    //    dataType: "json",
+                    //    contentType: false,
+                    //    processData: false,
+                    //    success: function (data) {
+                    //        if (data.Valid) {
+
+
+                    //        }
+
+                    //        $.each(data.Errors, function (key, value) {
+                    //            if (value != null) {
+
+
+                    //            }
+                    //        });
+                    //    },
+                    //    error: function (xhr) {
+
+
+                    //    }
+                    //});

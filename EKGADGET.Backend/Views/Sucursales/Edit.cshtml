@@ -1,0 +1,145 @@
+﻿
+@{
+    Layout = null;
+}
+@model EKGADGET.Common.Models.Sucursales
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <!--<link rel="stylesheet" type="text/css" href="~/Login//css-hamburgers/hamburgers.min.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/css/main.css">
+    <!--===============================================================================================-->
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <!--===============================================================================================-->
+    @*<script src="~/Login/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/js/main.js"></script>
+</head>
+<body>
+
+    <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+
+            <form id="formdata"  action="~/Sucursales/Edit" method="post">
+               
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <h4>Sucursal Seleccionada</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.localidadId)
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="localidad">Localidad</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.localidad, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.localidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="localidad">Sucursal</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.nombreSucursal, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.nombreSucursal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2" for="localidad">Marca</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.marca, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <!--===============================================================================================-->
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="localidad">Dias que Opera el Mes de @string.Format("{0: MMMM}", DateTime.Now)</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.diasOperaMes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.diasOperaMes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-8" for="localidad">Objetivo Mensual</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.objetivoMes, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.objetivoMes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-8" for="localidad">Objetivo Semanal</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ObjetivoSemanal, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.ObjetivoSemanal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-8" for="localidad">Objetivo Semanal Gerente</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ObjetivoSemanalJefe, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.ObjetivoSemanalJefe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="Edit" name="Edit" class="btn btn-info">
+                        Actualizar
+                    </button>
+                </div>
+
+            </form>
+             
+
+
+        </div>
+       
+    </div>
+   
+
+
+
+</body>
+</html>

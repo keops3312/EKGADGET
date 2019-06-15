@@ -7,7 +7,6 @@ namespace EKGADGET.Infrastructure
 {
     public class InstanceLocator
     {
-
         #region Properties
         public MainViewModel Main
         {
@@ -22,8 +21,5 @@ namespace EKGADGET.Infrastructure
             this.Main = new MainViewModel();
         }
         #endregion
-
     }
-
-
 }

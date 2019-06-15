@@ -1,0 +1,184 @@
+﻿@{
+        Layout = null;
+    }
+@model EKGADGET.Common.Models.Sucursales
+
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="~/Login/images/icons/favicon.ico" />
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/vendor/bootstrap/css/bootstrap.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <!--<link rel="stylesheet" type="text/css" href="~/Login//css-hamburgers/hamburgers.min.css">-->
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/vendor/select2/select2.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/Login/css/util.css">
+        <link rel="stylesheet" type="text/css" href="~/Login/css/main.css">
+        <!--===============================================================================================-->
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <!--===============================================================================================-->
+        @*<script src="~/Login/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+        <!--===============================================================================================-->
+        <script src="~/Login/vendor/bootstrap/js/popper.js"></script>
+        <script src="~/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Login/vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Login/js/main.js"></script>
+    </head>
+    <body>
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@Model.nombreSucursal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        Localidad
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.localidad)
+                    </dd>
+                  
+                    <dt>
+                        Objetivo Mensual
+                    </dt>
+
+                    <dd>
+                        @{
+                            decimal semM;
+                            semM = decimal.Parse(Model.objetivoMes);
+
+                        }
+                        <p class="text-danger">@string.Format("{0:C}", semM)</p>
+
+                    </dd>
+
+                    <dt>
+                        Tipo
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.concepto)
+                    </dd>
+
+                    <dt>
+                        Gerente
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.encargado)
+                    </dd>
+
+                    <dt>
+                        Direccion
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.direccion)
+                    </dd>
+
+                    <dt>
+                        Telefono
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.telefono)
+                    </dd>
+
+
+
+
+
+                    <dt>
+                        Email
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+
+                    <dt>
+                        Marca
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.marca)
+                    </dd>
+
+                    <dt>
+                        Empresa
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.empresa)
+                    </dd>
+
+
+                    <dt>
+                        Dias de Operacion de @string.Format("{0: MMMM}",DateTime.Now)
+                    </dt>
+
+                    <dd style="color:green;font-style:oblique">
+                        @Html.DisplayFor(model => model.diasOperaMes)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ObjetivoSemanal)
+                    </dt>
+
+                    <dd>
+                        @{
+                            decimal semS;
+                            semS = decimal.Parse(Model.ObjetivoSemanal);
+
+                        }
+                        <p class="text-danger">@string.Format("{0:C}", semS)</p>
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ObjetivoSemanalJefe)
+                    </dt>
+
+                    <dd>
+                        @{
+                            decimal semJ;
+                            semJ = decimal.Parse(Model.ObjetivoSemanalJefe);
+
+                        }
+                        <p class="text-danger">@string.Format("{0:C}", semJ)</p>
+
+                    </dd>
+
+                </dl>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+
+    
+
+    </body>
+</html>

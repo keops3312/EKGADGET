@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             x:Class="EKGADGET.Views.EditSucursalPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BindingContext="{Binding EditSucursal}"
+                     Padding="10"
+                    >
+                <Image Source="{Binding ImageSource}" >
+                </Image>
+                <Label Text="OBJETIVOS PARA EL MES"
+                   FontSize="Small"
+                   HorizontalOptions="Center"
+                   ></Label>
+                <Label Text="{Binding Sucursal.nombreSucursal}"
+                   FontSize="Small"
+                   HorizontalOptions="Center"
+                   ></Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           Text="Objetivo Mensual:"/>
+                    
+                    <Entry Grid.Column="1"
+                           Grid.Row="0"
+                           Keyboard="Numeric"
+                           Text="{Binding Sucursal.objetivoMes ,Mode=TwoWay}"
+                           Placeholder="0.00"
+                           />
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Objetivo Semanal:"/>
+                    <Entry Grid.Column="1"
+                           Grid.Row="1"
+                           Keyboard="Numeric"
+                           Text="{Binding Sucursal.ObjetivoSemanal,Mode=TwoWay}"
+                           Placeholder="0.00"/>
+
+                    <Label  Grid.Column="0"
+                            Grid.Row="2"
+                            Text="Objetivo Semanal Jefe:"/>
+                    <Entry Grid.Column="1"
+                            Grid.Row="2"
+                            Keyboard="Numeric"
+                            Text="{Binding Sucursal.ObjetivoSemanalJefe,Mode=TwoWay}"
+                            VerticalOptions="FillAndExpand"
+                            Placeholder="0.00"/>
+
+                    <Label  Grid.Column="0"
+                            Grid.Row="3"
+                            Text="Dias que Operara el Mes:"/>
+                    <Entry Grid.Column="1"
+                            Grid.Row="3"
+                            Keyboard="Numeric"
+                            Text="{Binding Sucursal.diasOperaMes,Mode=TwoWay}"
+                            VerticalOptions="FillAndExpand"
+                            Placeholder="0.00"/>
+
+
+
+
+                </Grid>
+
+
+
+                <ActivityIndicator 
+                    IsRunning="{Binding IsRunning}"
+                    VerticalOptions="Center"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button
+                     BackgroundColor="Navy"
+                    Text="Actualizar"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding SaveCommand}"/>
+                  
+
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

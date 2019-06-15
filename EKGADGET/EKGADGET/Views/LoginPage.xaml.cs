@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace EKGADGET.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
-    {
-        public LoginPage()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class LoginPage : ContentPage
+	{
+		public LoginPage ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

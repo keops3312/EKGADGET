@@ -1,0 +1,274 @@
+﻿@{
+    Layout = null;
+}
+@model EKGADGET.Backend.Models.Security.AccountViewModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>EKGADGET</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <!--<link rel="stylesheet" type="text/css" href="~/Login//css-hamburgers/hamburgers.min.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/css/main.css">
+    <!--===============================================================================================-->
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <!--===============================================================================================-->
+    @*<script src="~/Login/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Login/js/main.js"></script>
+</head>
+<body>
+
+
+
+
+    <div class="limiter">
+        <div class="container-login100">
+            <!-- style="background-image: url('images/img-01.jpg');" -->
+            <div class="wrap-login100 p-t-190 p-b-30">
+                <form class="login100-form validate-form" id="LoginData">
+                    @*action="/Accounts/Login"*@
+
+
+
+                    <div class="login100-form-avatar">
+                        <img src="~/Login/images/chart-1_111423.png" alt="AVATAR">
+                    </div>
+
+                    <span class="login100-form-title p-t-20 p-b-45">
+                        EKGADGET 1.0
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Ingrese Usuario">
+                        <input class="input100" type="text" name="Account.Username" id="Username" placeholder="Usuario">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Ingrese Contraseña">
+                        <input class="input100" type="password" name="Account.Password" id="Password" placeholder="Contraseña">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+
+
+
+                    <div class="container -login100-form-btn p-t-10">
+
+
+                        <button type="button" id="Acceso" name="Acceso" class="login100-form-btn">
+                            Accesar
+                        </button>
+
+                    </div>
+
+                    <div class="text-center w-full p-t-25 p-b-230">
+                        <a href="#" class="txt1">
+                            Olvidaste tu Password?
+                        </a>
+                    </div>
+
+                    <div class="text-center w-full">
+                        <a class="txt1" href="#">
+                            Crear nuevo usuario
+                            <i class="fa fa-long-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+        #loading {
+            display: none;
+            background-color: transparent;
+            z-index: 999999;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding-top: 300px;
+            filter: alpha(opacity=75);
+            -khtml-opacity: 0.75;
+            -moz-opacity: 0.75;
+            opacity: 0.75;
+        }
+    </style>
+    <div id="loading"><img src="~/Content/GalleryImages/wait.gif" /></div>
+
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+
+                $('#Acceso').on("click", function () {
+                    var username = $("#Username").val();
+                    var password = $("#Password").val();
+
+
+
+                    if (username.length == 0) {
+
+                        $("#CompletaFormulario").modal();
+                        $("#Leyenda").text("Ingresa un usuario!!!");
+                        $("#Username").focus();
+                        return false;
+                    }
+                    if (password.length == 0) {
+
+                        $("#CompletaFormulario").modal();
+                        $("#Leyenda").text("Ingresa una contraseña!!!");
+                        $("#Password").focus();
+                        return false;
+                    }
+
+                    //call ajax
+
+
+                    var serviceURL = "/Accounts/Login";
+                    //var formData1 = new FormData($('#LoginData')[0]);
+                    //data: JSON.stringify({ id: checkId }),
+                    checkValid();
+                    function checkValid() {
+                        $.ajax({
+                            url: serviceURL,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: $('#LoginData').serialize(),
+                            success: function (valid) {
+                                if (valid) {
+                                    //show that id is valid
+                                    if (valid.valid == false) {
+                                        $("#CompletaFormulario").modal();
+                                        $("#Leyenda").text("Usuario y/o Conttrasela Incorrectos!!!");
+                                        $("#Username").focus();
+                                        return false;
+                                    }
+
+                                    if (valid.valid == true) {
+                                        $("#AcceptFormulario").modal();
+
+                                        var leyenda = "Bienvenido " + username;
+                                        $("#LeyendaA").text(leyenda);
+                                        var dominio = '@Url.Action("Index", "Sucursales")';
+                                        window.location.href = dominio;
+                                    }
+
+
+
+                                } else {
+                                    //show that id is not valid
+                                    $("#CompletaFormulario").modal();
+                                    $("#Leyenda").text("Error de Conexion!!!");
+                                    $("#Username").focus();
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+
+
+                    $(document).ajaxStart(function () {
+                        $("#loading").show();
+                    });
+
+                    $(document).ajaxStop(function () {
+                        $("#loading").hide();
+                    });
+
+                });
+
+                    //end call ajax
+
+                });
+
+            });
+
+
+
+
+    </script>
+
+
+    <!--===============================================================================================-->
+    <div id="CompletaFormulario" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">EKGADGET ACCES</h4>
+                </div>
+                <div class="modal-body" style="text-align:center">
+                    <p id="Leyenda"></p>
+                    <img src="~/Content/GalleryImages/close-panel-png-hi.png" width="100" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <div id="AcceptFormulario" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">EKGADGET ACCES</h4>
+                </div>
+                <div class="modal-body" style="text-align:center">
+                    <p id="LeyendaA"></p>
+                    <img src="~/Content/GalleryImages/Icone-OK.png" width="100" />
+                </div>
+                <div class="modal-footer" style="align-content:center">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+
+    <div class="modal fade" id="exampleModalCenter"
+         tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true"></div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#Details").click(function () {
+
+                var url = $("#exampleModalCenter").data("url");
+                $.get(url, function (data) {
+
+                    $("#exampleModalCenter").html(data);
+                    $("#exampleModalCenter").modal("show");
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+
+
+
+                        //$('<div id="modalEdit" class="modal fade">' +
+                        //    '<div class="modal-content" id="modalbody">' +
+                        //    data + '</div></div>').modal();
+
+
+
+
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <dvi class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModal-label">Bootstrap Dialog</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button class="btn btn-primary" id="btnOk" onclick="">Ok</button>
+                            <button class=" btn btn-default" data-dismiss="modal" id="btnCancel">Cancel</button>
+                        </div>
+
+
+                    </div>
+                </dvi>
+            </div>
+        </div>
+
