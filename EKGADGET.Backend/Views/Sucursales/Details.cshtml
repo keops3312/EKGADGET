@@ -66,7 +66,8 @@
                     <dd>
                         @{
                             decimal semM;
-                            semM = decimal.Parse(Model.objetivoMes);
+                            //semM = decimal.Parse(Model.objetivoMes);
+                            semM = Model.objetivoMes;
 
                         }
                         <p class="text-danger">@string.Format("{0:C}", semM)</p>
@@ -149,7 +150,8 @@
                     <dd>
                         @{
                             decimal semS;
-                            semS = decimal.Parse(Model.ObjetivoSemanal);
+                            //semS = decimal.Parse(Model.ObjetivoSemanal);
+                            semS = Model.ObjetivoSemanal;
 
                         }
                         <p class="text-danger">@string.Format("{0:C}", semS)</p>
@@ -162,7 +164,8 @@
                     <dd>
                         @{
                             decimal semJ;
-                            semJ = decimal.Parse(Model.ObjetivoSemanalJefe);
+                            //semJ = decimal.Parse(Model.ObjetivoSemanalJefe);
+                            semJ = Model.ObjetivoSemanalJefe;
 
                         }
                         <p class="text-danger">@string.Format("{0:C}", semJ)</p>

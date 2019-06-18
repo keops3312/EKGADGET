@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="EKGADGET.Views.SucursalesPage">
+             x:Class="EKGADGET.Views.SucursalesPage"
+              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
 
 
@@ -73,21 +74,21 @@
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding ObjetivoMesC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    Text="{Binding objetivoMes,StringFormat='Objetivo Mensual: {0:C2}'}"
                                     TextColor="Black"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding ObjetivoSemanalC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    Text="{Binding ObjetivoSemanal,StringFormat='Objetivo Semanal: {0:C2}'}"
                                     TextColor="Black"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding ObjetivoSemanalJefeC,StringFormat='Objetivo Mensual: {0:C2}'}"
+                                    Text="{Binding ObjetivoSemanalJefe,StringFormat='Objetivo Sem. Jefe: {0:C2}'}"
                                     TextColor="Black"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"

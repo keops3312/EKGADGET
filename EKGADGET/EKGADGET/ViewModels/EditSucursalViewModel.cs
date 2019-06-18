@@ -4,6 +4,7 @@ namespace EKGADGET.ViewModels
     using EKGADGET.Common.Models;
     using EKGADGET.Services;
     using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -22,6 +23,11 @@ namespace EKGADGET.ViewModels
 
         private bool isEnabled;
 
+        private string diasOperacionText;
+        private string objetivoMensualText;
+        private string objetivoSemanalText;
+        private string objetivoJefeText;
+
        
         #endregion
 
@@ -29,6 +35,7 @@ namespace EKGADGET.ViewModels
         public EditSucursalViewModel(Sucursales sucursales)
         {
             this.sucursal = sucursales;
+          
             this.apiService = new ApiService();
             this.IsEnabled = true;
          
@@ -72,13 +79,66 @@ namespace EKGADGET.ViewModels
             }
         }
 
- 
+
+
+        public string DiasOperacionText
+        {
+            get
+            {
+                return this.diasOperacionText;
+            }
+            set
+            {
+                this.SetValue(ref this.diasOperacionText, value);
+            }
+        }
+
+        public string ObjetivoMensualText
+        {
+            get
+            {
+               
+                return this.objetivoMensualText;
+            }
+            set
+            {
+               
+                this.SetValue(ref this.objetivoMensualText, value);
+            }
+        }
+
+
+        public string ObjetivoSemanalText
+        {
+            get
+            {
+                return this.objetivoSemanalText;
+            }
+            set
+            {
+                this.SetValue(ref this.objetivoSemanalText, value);
+            }
+        }
+
+        public string ObjetivoJefeText
+        {
+            get
+            {
+                return this.objetivoJefeText;
+            }
+            set
+            {
+                this.SetValue(ref this.objetivoJefeText, value);
+            }
+        }
+
+
         #endregion
 
 
         #region Commands
 
-     
+
         public ICommand SaveCommand
         {
             get
@@ -94,49 +154,84 @@ namespace EKGADGET.ViewModels
         #region Methods
         private async void Save()
         {
-            if (this.Sucursal.diasOperaMes<0)
+
+            if(string.IsNullOrEmpty(ObjetivoMensualText))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
-                                       "Ingrese dias de Operacion",
-                                       "Aceptar");
-
-
+                                    "NO puede quedar OBJETIVO MENSUAL en Blanco!",
+                                    "Aceptar");
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Sucursal.objetivoMes))
+
+            if (decimal.Parse(objetivoMensualText) == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
-                                       "Ingrese Objetivo Mensual",
-                                       "Aceptar");
-
-
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.Sucursal.ObjetivoSemanal))
-            {
-                await Application.Current.MainPage.DisplayAlert("Error",
-                                       "Ingrese Objetivo Semanal",
-                                       "Aceptar");
-
-
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.Sucursal.ObjetivoSemanalJefe))
-            {
-                await Application.Current.MainPage.DisplayAlert("Error",
-                                       "Ingrese Objetivo Semanal Jefe",
-                                       "Aceptar");
-
-
+                                   "Ingrese Objetivo Mensual",
+                                   "Aceptar");
                 return;
             }
 
 
 
-            /*check Connection*/
+            if (string.IsNullOrEmpty(objetivoSemanalText))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                    "NO puede quedar OBJETIVO SEMANAL en Blanco!",
+                                    "Aceptar");
+                return;
+            }
+
+
+            if (decimal.Parse(objetivoSemanalText) == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                   "Ingrese Objetivo Semanal",
+                                   "Aceptar");
+                return;
+            }
+
+
+
+            if (string.IsNullOrEmpty(objetivoJefeText))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                    "NO puede quedar OBJETIVO SEMANAL JEFE en Blanco!",
+                                    "Aceptar");
+                return;
+            }
+
+
+            if (decimal.Parse(objetivoJefeText) == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                   "Ingrese Objetivo Semanal Jefe",
+                                   "Aceptar");
+                return;
+            }
+
+
+
+            if (string.IsNullOrEmpty(diasOperacionText))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                    "NO puede quedar DIAS OPERACION en Blanco!",
+                                    "Aceptar");
+                return;
+            }
+
+
+            if (decimal.Parse(diasOperacionText) == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                   "Ingrese Dias de Operacion",
+                                   "Aceptar");
+                return;
+            }
+
+
+
+            ///*check Connection*/
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -163,6 +258,12 @@ namespace EKGADGET.ViewModels
             var controller = Application.Current.Resources["UrlSucursalesController"].ToString();
 
 
+
+            this.sucursal.diasOperaMes = int.Parse(diasOperacionText);
+            this.sucursal.objetivoMes = decimal.Parse(objetivoMensualText);
+            this.sucursal.ObjetivoSemanal = decimal.Parse(objetivoSemanalText);
+            this.sucursal.ObjetivoSemanalJefe = decimal.Parse(objetivoJefeText);
+
             var response = await this.apiService.Put(
                 url,
                prefix,
@@ -182,34 +283,38 @@ namespace EKGADGET.ViewModels
 
             }
 
+          //  var newSucursal = JsonConvert.DeserializeObject<Sucursales>(response.Result.ToString());
 
-            var newSucursal = (Sucursales)response.Result; /*locasteamos*/
+            //var newSucursal = (Sucursales)response.Result; /*locasteamos*/
             var sucursalViewModel = SucursalesViewModel.GetInstance();/*de esta manera se actualiza la lista de productos cuandose agraga uno nuevo*/
 
-            var oldProduct = sucursalViewModel.MySucursales.Where(p => p.localidadId == this.sucursal.localidadId).FirstOrDefault();
+            var oldSucursal = sucursalViewModel.MySucursales.Where(p => p.localidadId == this.sucursal.localidadId).FirstOrDefault();
 
-            if (oldProduct != null)
+            if (oldSucursal != null)
             {
 
-                sucursalViewModel.MySucursales.Remove(oldProduct);
+                sucursalViewModel.MySucursales.Remove(oldSucursal);
             }
 
 
 
-            sucursalViewModel.MySucursales.Add(newSucursal);
+            sucursalViewModel.MySucursales.Add(this.sucursal);
             sucursalViewModel.RefreshList();
 
 
             this.IsRunning = false;
             this.IsEnabled = true;
+          
+            await Application.Current.MainPage.Navigation.PopAsync();
+            //ProductsPage();
+                                                                  // await Application.Current.MainPage.Navigation.PopAsync();/*para desapilar */
+                                                                  //await App.Navigator.PopAsync();
 
-            await Application.Current.MainPage.Navigation.PopAsync();/*para desapilar */
-            //await App.Navigator.PopAsync();
 
 
         }
 
-      
+
 
 
         #endregion

@@ -31,7 +31,7 @@ namespace EKGADGET.Common.Models
         public string marca { get; set; }
         public string empresa { get; set; }
         public string xxx { get; set; }
-        public string objetivoMes { get; set; }
+        public decimal objetivoMes { get; set; }
         public string bd { get; set; }
         public string central { get; set; }
         public string impresora { get; set; }
@@ -44,9 +44,9 @@ namespace EKGADGET.Common.Models
         
         
         /**/
-        public string ObjetivoSemanal { get; set; }
+        public decimal ObjetivoSemanal { get; set; }
 
-        public string ObjetivoSemanalJefe { get; set; }
+        public decimal ObjetivoSemanalJefe { get; set; }
 
 
 

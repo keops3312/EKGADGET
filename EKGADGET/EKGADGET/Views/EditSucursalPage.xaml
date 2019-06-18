@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="EKGADGET.Views.EditSucursalPage">
+             x:Class="EKGADGET.Views.EditSucursalPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout BindingContext="{Binding EditSucursal}"
+        <ScrollView BindingContext="{Binding EditSucursal}">
+            <StackLayout 
                      Padding="10"
                     >
                 <Image Source="{Binding ImageSource}" >
@@ -27,7 +28,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0"
@@ -36,9 +37,9 @@
                     
                     <Entry Grid.Column="1"
                            Grid.Row="0"
-                           Keyboard="Numeric"
-                           Text="{Binding Sucursal.objetivoMes ,Mode=TwoWay}"
+                           Text="{Binding ObjetivoMensualText,Mode=TwoWay}"
                            Placeholder="0.00"
+                           Keyboard="Numeric"
                            />
 
                     <Label Grid.Column="0"
@@ -47,7 +48,7 @@
                     <Entry Grid.Column="1"
                            Grid.Row="1"
                            Keyboard="Numeric"
-                           Text="{Binding Sucursal.ObjetivoSemanal,Mode=TwoWay}"
+                           Text="{Binding ObjetivoSemanalText,Mode=TwoWay}"
                            Placeholder="0.00"/>
 
                     <Label  Grid.Column="0"
@@ -56,8 +57,7 @@
                     <Entry Grid.Column="1"
                             Grid.Row="2"
                             Keyboard="Numeric"
-                            Text="{Binding Sucursal.ObjetivoSemanalJefe,Mode=TwoWay}"
-                            VerticalOptions="FillAndExpand"
+                            Text="{Binding ObjetivoJefeText,Mode=TwoWay}"
                             Placeholder="0.00"/>
 
                     <Label  Grid.Column="0"
@@ -66,9 +66,9 @@
                     <Entry Grid.Column="1"
                             Grid.Row="3"
                             Keyboard="Numeric"
-                            Text="{Binding Sucursal.diasOperaMes,Mode=TwoWay}"
+                            Text="{Binding DiasOperacionText,Mode=TwoWay}"
                             VerticalOptions="FillAndExpand"
-                            Placeholder="0.00"/>
+                            Placeholder="0"/>
 
 
 

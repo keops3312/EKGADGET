@@ -5,11 +5,11 @@ using System.Text;
 
 namespace EKGADGET.ViewModels
 {
-    public class MainViewModel //: INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
 
         #region Properties
-       // public event PropertyChangedEventHandler PropertyChanged;
+       //public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 

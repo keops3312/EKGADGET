@@ -150,8 +150,8 @@
                     <td>
                         @{
                             decimal mes;
-                            mes = decimal.Parse(item.objetivoMes);
-
+                            //mes = decimal.Parse(item.objetivoMes);
+                            mes = item.objetivoMes;
                         }
                         <p class="text-success" style="font-weight:bold;font-size:large">@string.Format("{0:C}", mes)</p>
 
@@ -159,16 +159,16 @@
                     <td>
                         @{
                             decimal sem;
-                            sem = decimal.Parse(item.ObjetivoSemanal);
-
+                            // sem = decimal.Parse(item.ObjetivoSemanal);
+                            sem = item.ObjetivoSemanal;
                         }
                         <p class="text-info" style="font-weight:bold;font-size:large">@string.Format("{0:C}", sem)</p>
                     </td>
                     <td>
                         @{
                             decimal semJ;
-                            semJ = decimal.Parse(item.ObjetivoSemanalJefe);
-
+                            //semJ = decimal.Parse(item.ObjetivoSemanalJefe);
+                            semJ = item.ObjetivoSemanalJefe;
                         }
                         <p class="text-danger" style="font-weight:bold;font-size:large">@string.Format("{0:C}", semJ)</p>
                     </td>

@@ -18,16 +18,6 @@ namespace EKGADGET.ViewModels
 
         #endregion
 
-        #region Attributtes
-        [JsonIgnore]
-        public decimal ObjetivoMesC { set; get; }
-        [JsonIgnore]
-        public decimal ObjetivoSemanalC { set; get; }
-
-        [JsonIgnore]
-        public decimal ObjetivoSemanalJefeC { set; get; } 
-        #endregion
-
         #region Commands
 
 
@@ -62,7 +52,8 @@ namespace EKGADGET.ViewModels
 
 
             MainViewModel.GetInstance().EditSucursal = new EditSucursalViewModel(this);
-            Application.Current.MainPage = new EditSucursalPage();//ProductsPage();
+            Application.Current.MainPage.Navigation.PushAsync(new EditSucursalPage());
+           // Application.Current.MainPage = new EditSucursalPage();//ProductsPage();
             //await Application.Current.MainPage.popo(new EditSucursalPage());
             //await Application.Current.MainPage.pus(new EditSucursalPage());
             //await Application.Current.MainPage.Navigation.pa.PushAsync(new EditSucursalPage());

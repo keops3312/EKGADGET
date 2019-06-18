@@ -23,8 +23,6 @@ namespace EKGADGET.ViewModels
 
         #region attributes
         private bool isRefreshing;
-        private bool isRunning;
-        private string filter;
         private ObservableCollection<SucursalesItemViewModel> sucursales;
         #endregion
 
@@ -52,19 +50,6 @@ namespace EKGADGET.ViewModels
                 SetValue(ref this.isRefreshing, value);
             }
         }
-        public string Filter
-        {
-            get
-            {
-                return this.filter;
-            }
-            set
-            {
-                SetValue(ref this.filter, value);
-            }
-        }
-
-
       
         #endregion
 
@@ -132,7 +117,7 @@ namespace EKGADGET.ViewModels
         {
             var myListSucursalesItemViewModel = MySucursales.Select(p => new SucursalesItemViewModel
             {
-                  
+                 
       
                 ObjetivoSemanalJefe = p.ObjetivoSemanalJefe,
                 ObjetivoSemanal = p.ObjetivoSemanal,
@@ -161,11 +146,9 @@ namespace EKGADGET.ViewModels
                 calle = p.calle,
                 colonia = p.colonia,
                 noint = p.noint,
+                noext=p.noext,
                 cp = p.cp,
                 ciudad = p.ciudad,
-                ObjetivoMesC=decimal.Parse(p.objetivoMes),
-                ObjetivoSemanalC=decimal.Parse(p.ObjetivoSemanal),
-                ObjetivoSemanalJefeC=decimal.Parse(p.ObjetivoSemanalJefe),
               
 
 
