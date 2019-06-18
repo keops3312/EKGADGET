@@ -177,7 +177,8 @@ namespace EKGADGET.ViewModels
             }
 
             MainViewModel.GetInstance().Sucursales = new SucursalesViewModel();
-            Application.Current.MainPage = new SucursalesPage();//ProductsPage();
+            //Application.Current.MainPage = new SucursalesPage();//ProductsPage();
+            await Application.Current.MainPage.Navigation.PushAsync(new SucursalesPage());
 
             this.IsRunning = false;
             this.IsEnabled = true;
