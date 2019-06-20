@@ -3,88 +3,121 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EKGADGET.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             BackgroundColor="DarkGoldenrod"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
 
    
     <ContentPage.Content>
         <ScrollView
         	BindingContext="{Binding Login}">
+           
             <StackLayout
-            	Padding="10">
-                <Image  
-                	HeightRequest="100"
-                	Source="logotipo">
-                </Image>
+             >
+
                 <Grid
-                	Margin="10,0"
+                    BackgroundColor="White"
                 	VerticalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                    	Text="USUARIO"
-                        Grid.Row="0"
-                    	Grid.Column="0"
-                    	VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        TextColor="White"
-                       
-                        />
-                    <Frame
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+
+                    <StackLayout
+                         Grid.Row="0"
+                            BackgroundColor="#3981d0">
+                        <controls:CircleImage 
+                            BackgroundColor="Transparent"
+                	        HeightRequest="150"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"
+                	        Source="logoEK">
+                        </controls:CircleImage>
+                        <Label HorizontalOptions="Center" 
+                               VerticalTextAlignment="Center" 
+                               FontAttributes="Bold" 
+                               FontSize="Large" TextColor="White">EKGADGET</Label>
+
+                        <Label HorizontalOptions="Center" 
+                               VerticalTextAlignment="Center"
+                               FontSize="Small" TextColor="White">ACTUALIZACION DE OBJETIVOS SEMP</Label>
+                    </StackLayout>
+
+                    <StackLayout
                         Grid.Row="1"
-                    	Grid.Column="0"
-                        BorderColor="Black"
-                        CornerRadius="200"
+                        BackgroundColor="White"     
+                        Margin="0,0,10,0"      
                         VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"               
                         >
-                        <Entry Text="{Binding Usuario,Mode=TwoWay}"
-                    	Placeholder="ingrese usuario"
-                        HorizontalTextAlignment="Center"
-                        IsTextPredictionEnabled="True"
-                        FontSize="Small"/>
+                        <controls:CircleImage 
+                           BackgroundColor="Transparent"
+                	        HeightRequest="56"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"
+                	        Source="entrar"
+                            >
+                        </controls:CircleImage>
+                        <Frame
+                            
+                            CornerRadius="30"
+                            Margin="30"
+                            Padding="10,0,10,0"
+                            BorderColor="#3981d0"
+                            HasShadow="False"
+                            >
 
-                    </Frame>
+                            <Entry Text="{Binding Usuario,Mode=TwoWay}"
+                    	            Placeholder="Ingrese usuario"
+                                     VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="Medium"/>
 
-                    <Label
-                    	Text="PASSWORD"
-                        Grid.Row="2"
-                    	Grid.Column="0"
-                    	VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        TextColor="White">
+                        </Frame>
 
-                    </Label>
-                    <Frame
-                        Grid.Row="3"
-                    	Grid.Column="0"
-                        BorderColor="Black"
-                        CornerRadius="200"
-                        VerticalOptions="Center"
-                        >
+                      
 
-                        <Entry 
+                        <controls:CircleImage 
+                           BackgroundColor="Transparent"
+                	        HeightRequest="56"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"
+                	        Source="candado">
+                        </controls:CircleImage>
+                        <Frame
+                            CornerRadius="30"
+                            Margin="30"
+                            Padding="10,0,10,0"
+                            BorderColor="#3981d0"
+                            HasShadow="False">
+                            <Entry 
                         IsPassword="True"
                         Text="{Binding Password,Mode=TwoWay}"
-                    	Placeholder="ingrese password"
+                    	Placeholder="Ingrese password"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"
                         HorizontalTextAlignment="Center"
-                        IsTextPredictionEnabled="True"
-                        FontSize="Small"/>
-                    </Frame>
+                        FontSize="Medium"/>
 
-                   
+                        </Frame>
+                      
+                  
 
-                </Grid>
-                <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
-                <StackLayout
-                	Margin="40,0"
+                    </StackLayout>
+
+                    <StackLayout
+                    Grid.Row="2"          
+                	Margin="50,0"
                 	Orientation="Horizontal"
                 	VerticalOptions="CenterAndExpand">
-                    <Button
-                    	BackgroundColor="DarkTurquoise"
+                        <Button
+                    	BackgroundColor="#1b4879"
                     	BorderRadius="23"
                     	Command="{Binding LoginCommand}"
                     	HeightRequest="46"
@@ -92,18 +125,23 @@
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="Entrar"
                     	TextColor="White">
-                    </Button>
-                   
-                </StackLayout>
+                        </Button>
+
+                    </StackLayout>
+
+
+
+                </Grid>
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand"
+                    Color="AliceBlue"
+                    >
+                </ActivityIndicator>
+             
                
             </StackLayout>
 
-            <!--<StackLayout>
-                <Label Text="Phone"></Label>
-                <control:MaskedEntry Placeholder="Phone" Mask="(XX)XXXX-XXXX" Keyboard="Numeric" ></control:MaskedEntry>
-                <Label Text="Number of registration"></Label>
-                <control:MaskedEntry Placeholder="Number of registration" Mask="XXXXX.XXXXX.XX-XX  (XX)" ></control:MaskedEntry>
-            </StackLayout>-->
         </ScrollView>
     </ContentPage.Content>
 

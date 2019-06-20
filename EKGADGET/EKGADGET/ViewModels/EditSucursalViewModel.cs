@@ -5,6 +5,7 @@ namespace EKGADGET.ViewModels
     using EKGADGET.Services;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
+    using System;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -27,8 +28,8 @@ namespace EKGADGET.ViewModels
         private string objetivoMensualText;
         private string objetivoSemanalText;
         private string objetivoJefeText;
+        private string fecha;
 
-       
         #endregion
 
         #region Constructors
@@ -38,7 +39,9 @@ namespace EKGADGET.ViewModels
           
             this.apiService = new ApiService();
             this.IsEnabled = true;
-         
+            DateTime operacion = DateTime.Now;
+            Fecha = $"Objetivos correspondientes al mes de: {operacion.ToString("MMMM yyyy")}";
+
         }
         #endregion
 
@@ -132,6 +135,17 @@ namespace EKGADGET.ViewModels
             }
         }
 
+        public string Fecha
+        {
+            get
+            {
+                return this.fecha;
+            }
+            set
+            {
+                SetValue(ref this.fecha, value);
+            }
+        }
 
         #endregion
 

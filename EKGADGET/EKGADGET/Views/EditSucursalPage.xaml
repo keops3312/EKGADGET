@@ -3,75 +3,195 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="EKGADGET.Views.EditSucursalPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:custom="clr-namespace:EKGADGET.Helpers"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack"
              NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter" />
+            <converterPack:UpperTextConverter x:Key="UpperTextConverter" />
+            <converterPack:LowerTextConverter x:Key="LowerTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding EditSucursal}">
             <StackLayout 
-                     Padding="10"
+                 Padding="10"
+                 HorizontalOptions="FillAndExpand"
+                 BackgroundColor="White"
+                
                     >
-                <Image Source="{Binding ImageSource}" >
-                </Image>
-                <Label Text="OBJETIVOS PARA EL MES"
+                <controls:CircleImage 
+                            BackgroundColor="Transparent"
+                	        HeightRequest="100"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"
+                            BorderColor="DarkBlue"
+                	        Source="{Binding Sucursal.marca}">
+                </controls:CircleImage>
+                <Label Text="{Binding Fecha}"
                    FontSize="Small"
                    HorizontalOptions="Center"
+                       TextColor="DarkBlue"
                    ></Label>
                 <Label Text="{Binding Sucursal.nombreSucursal}"
                    FontSize="Small"
                    HorizontalOptions="Center"
+                       TextColor="DarkBlue"
                    ></Label>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                <Label Text="{Binding Sucursal.encargado}"
+                   FontSize="Small"
+                   HorizontalOptions="Center"
+                       TextColor="DarkBlue"
+                   ></Label>
+                <Label Text="{Binding Sucursal.empresa}"
+                   FontSize="Small"
+                   HorizontalOptions="Center"
+                       TextColor="DarkBlue"
+                   ></Label>
 
+                
+                <Label BackgroundColor="#2a4891" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White" 
+                       Text="Ingrese los nuevos Objetivos por favor" ></Label>
+
+                <Grid BackgroundColor="white">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="0"
-                           Grid.Row="0"
-                           Text="Objetivo Mensual:"/>
-                    
-                    <Entry Grid.Column="1"
-                           Grid.Row="0"
-                           Text="{Binding ObjetivoMensualText,Mode=TwoWay}"
-                           Placeholder="0.00"
-                           Keyboard="Numeric"
-                           />
+                    <Label     
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Objetivo Mensual:"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="DarkBlue"/>
+                    <custom:CustomEntry
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            CornerRadius="18"  
+                             IsCurvedCornersEnabled="True"  
+                             BorderColor="#3981d0"      
+                             HorizontalTextAlignment="Center"  
+                             FontSize="Medium"  
+                             HeightRequest="40"    
+                             PlaceholderColor="Gray"  
+                             TextColor="Black"  
+                             FontAttributes="Bold"  
+                             WidthRequest="100"
+                             Text="{Binding ObjetivoMensualText, Converter={StaticResource CurrencyConverter},Mode=TwoWay}"
+                             Placeholder="$ 0.00"
+                             Keyboard="Numeric"
+                            
+                       
+                        
+                        
+                        >
+                        
+                        
+                    </custom:CustomEntry>
+                   
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Objetivo Semanal:"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="DarkBlue"/>
+                    <custom:CustomEntry
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            CornerRadius="18"  
+                             IsCurvedCornersEnabled="True"  
+                             BorderColor="#3981d0"      
+                             HorizontalTextAlignment="Center"  
+                             FontSize="Medium"  
+                             HeightRequest="40"    
+                             PlaceholderColor="Gray"  
+                             TextColor="Black"  
+                             FontAttributes="Bold"  
+                             WidthRequest="100"
+                             Text="{Binding ObjetivoSemanalText,Mode=TwoWay}"
+                             Placeholder="$ 0.00"
+                             Keyboard="Numeric"
+                        />
 
-                    <Label Grid.Column="0"
-                           Grid.Row="1"
-                           Text="Objetivo Semanal:"/>
-                    <Entry Grid.Column="1"
-                           Grid.Row="1"
-                           Keyboard="Numeric"
-                           Text="{Binding ObjetivoSemanalText,Mode=TwoWay}"
-                           Placeholder="0.00"/>
 
-                    <Label  Grid.Column="0"
+                    <Label  
+                          Grid.Row="2"
+                          Grid.Column="0"
+                        Text="Objetivo Semanal Jefe:"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="DarkBlue"/>
+                    <custom:CustomEntry
                             Grid.Row="2"
-                            Text="Objetivo Semanal Jefe:"/>
-                    <Entry Grid.Column="1"
-                            Grid.Row="2"
-                            Keyboard="Numeric"
-                            Text="{Binding ObjetivoJefeText,Mode=TwoWay}"
-                            Placeholder="0.00"/>
+                            Grid.Column="1"
+                            CornerRadius="18"  
+                             IsCurvedCornersEnabled="True"  
+                             BorderColor="#3981d0"      
+                             HorizontalTextAlignment="Center"  
+                             FontSize="Medium"  
+                             HeightRequest="40"    
+                             PlaceholderColor="Gray"  
+                             TextColor="Black"  
+                             FontAttributes="Bold"  
+                             WidthRequest="100"
+                             Text="{Binding ObjetivoJefeText,Mode=TwoWay}"
+                             Placeholder="$ 0.00"
+                             Keyboard="Numeric"
+                        />
 
-                    <Label  Grid.Column="0"
+                 
+                    <Label 
+                         Grid.Row="3"
+                          Grid.Column="0"
+                         Text="Dias que Operara el Mes:"
+                         HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Start"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        TextColor="DarkBlue"/>
+                    <custom:CustomEntry
                             Grid.Row="3"
-                            Text="Dias que Operara el Mes:"/>
-                    <Entry Grid.Column="1"
-                            Grid.Row="3"
-                            Keyboard="Numeric"
-                            Text="{Binding DiasOperacionText,Mode=TwoWay}"
-                            VerticalOptions="FillAndExpand"
-                            Placeholder="0"/>
+                            Grid.Column="1"
+                            CornerRadius="18"  
+                             IsCurvedCornersEnabled="True"  
+                             BorderColor="#3981d0"      
+                             HorizontalTextAlignment="Center"  
+                             FontSize="Medium"  
+                             HeightRequest="40"    
+                             PlaceholderColor="Gray"  
+                             TextColor="Black"  
+                             FontAttributes="Bold"  
+                             WidthRequest="100"
+                             Text="{Binding DiasOperacionText,Mode=TwoWay}"
+                             Placeholder="0"
+                             Keyboard="Numeric"
+                        />
 
-
-
+               
 
                 </Grid>
 
@@ -79,14 +199,16 @@
 
                 <ActivityIndicator 
                     IsRunning="{Binding IsRunning}"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center"
+                    Color="Orange"/>
                 <StackLayout Orientation="Horizontal">
                     <Button
-                     BackgroundColor="Navy"
+                     BackgroundColor="#65c528"
                     Text="Actualizar"
                     BorderRadius="23"
                     HeightRequest="46"
                     TextColor="White"
+                    VerticalOptions="CenterAndExpand"
                     HorizontalOptions="FillAndExpand"
                     IsEnabled="{Binding IsEnabled}"
                     Command="{Binding SaveCommand}"/>

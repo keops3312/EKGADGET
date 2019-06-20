@@ -2,6 +2,7 @@
 
 namespace EKGADGET.ViewModels
 {
+    using System;
     #region Libraries
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -24,6 +25,7 @@ namespace EKGADGET.ViewModels
         #region attributes
         private bool isRefreshing;
         private ObservableCollection<SucursalesItemViewModel> sucursales;
+        private string fecha;
         #endregion
 
         #region Properties      
@@ -50,7 +52,18 @@ namespace EKGADGET.ViewModels
                 SetValue(ref this.isRefreshing, value);
             }
         }
-      
+        public string Fecha
+        {
+            get
+            {
+                return this.fecha;
+            }
+            set
+            {
+                SetValue(ref this.fecha, value);
+            }
+        }
+
         #endregion
 
         #region Constructor 
@@ -58,7 +71,8 @@ namespace EKGADGET.ViewModels
         {
             instance = this;//aqui le digo que la instancia es el form actual
             this.apiService = new ApiService();
-            
+            DateTime operacion = DateTime.Now;
+            Fecha = $"Objetivos correspondientes al mes de:{operacion.ToString("MMMM yyyy")}";
             LoadSucursales();
         }
 

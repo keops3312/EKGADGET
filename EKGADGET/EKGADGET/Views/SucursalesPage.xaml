@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="White"
              x:Class="EKGADGET.Views.SucursalesPage"
               NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -11,14 +13,23 @@
                      BackgroundColor="White"
                      Padding="15,15,15,15">
 
-            <SearchBar
-                Placeholder="escriba para buscar sucursal"
-                Text="{Binding Filter, Mode=TwoWay}"
-                SearchCommand="{Binding SearchSucursalCommand}"
-                BackgroundColor="White"
-                TextColor="Black">
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                 BackgroundColor="#3981d0"
+                 >
 
-            </SearchBar>
+                <Image 
+                           BackgroundColor="Transparent"
+                	        HeightRequest="64"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"
+                	        Source="sucursal"
+                            >
+                </Image>
+                <Label Text="Sucursales de Casas de Empeño" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White"> </Label>
+                <Label Text="{Binding Fecha}" HorizontalOptions="Center" TextColor="White"></Label>
+            </StackLayout>
 
 
             <ListView
@@ -27,7 +38,9 @@
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommand}"
-                    >
+                SeparatorColor="#1b4879"
+                
+                   >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -39,8 +52,8 @@
                             </ViewCell.ContextActions>-->
                             <Grid>
                                 <Grid.GestureRecognizers>
-
-                                    <!--<TapGestureRecognizer Command="{Binding EditSucursalCommand}">
+                               
+                                <!--<TapGestureRecognizer Command="{Binding EditSucursalCommand}">
 
                                     </TapGestureRecognizer>-->
 
@@ -66,7 +79,8 @@
                                     <Label
                                     
                                     Text="{Binding nombreSucursal}"
-                                    TextColor="Black"
+                                    TextColor="#1b4879"
+                                    FontAttributes="Bold"
                                     ></Label>
                                     <Label
                                     Text="{Binding encargado}"
@@ -74,29 +88,29 @@
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding objetivoMes,StringFormat='Objetivo Mensual: {0:C2}'}"
-                                    TextColor="Black"
+                                    Text="{Binding objetivoMes,StringFormat='Obj. Mensual: {0:C2}'}"
+                                    TextColor="#154360"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding ObjetivoSemanal,StringFormat='Objetivo Semanal: {0:C2}'}"
-                                    TextColor="Black"
+                                    Text="{Binding ObjetivoSemanal,StringFormat='Obj. Semanal: {0:C2}'}"
+                                    TextColor="#154360"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
                                     <Label
                                     
-                                    Text="{Binding ObjetivoSemanalJefe,StringFormat='Objetivo Sem. Jefe: {0:C2}'}"
-                                    TextColor="Black"
+                                    Text="{Binding ObjetivoSemanalJefe,StringFormat='Obj. Semanal Jefe: {0:C2}'}"
+                                    TextColor="#154360"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
                                     <Label
                                     
                                     Text="{Binding diasOperaMes, StringFormat='Dias de Operacion: {0}'}"
-                                    TextColor="Black"
+                                    TextColor="#154360"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     ></Label>
