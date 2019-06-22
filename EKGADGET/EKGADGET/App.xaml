@@ -10,8 +10,7 @@
          
             <infra:InstanceLocator x:Key="Locator"/>
             <CustomEntry:CustomEntry x:Key="CustomEntry"/>
-            <util:CurrencyConverter x:Key="currencyConverter" />
-
+           
 
             <!--USAR PARAMETROS-->
             <x:String x:Key="UrlAPI">http://192.168.1.79:16006</x:String>

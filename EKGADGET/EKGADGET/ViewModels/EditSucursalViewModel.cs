@@ -1,11 +1,13 @@
 ﻿
 namespace EKGADGET.ViewModels
 {
+    
     using EKGADGET.Common.Models;
     using EKGADGET.Services;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -25,9 +27,9 @@ namespace EKGADGET.ViewModels
         private bool isEnabled;
 
         private string diasOperacionText;
-        private string objetivoMensualText;
-        private string objetivoSemanalText;
-        private string objetivoJefeText;
+        private decimal objetivoMensualText;
+        private decimal objetivoSemanalText;
+        private decimal objetivoJefeText;
         private string fecha;
 
         #endregion
@@ -41,6 +43,8 @@ namespace EKGADGET.ViewModels
             this.IsEnabled = true;
             DateTime operacion = DateTime.Now;
             Fecha = $"Objetivos correspondientes al mes de: {operacion.ToString("MMMM yyyy")}";
+
+
 
         }
         #endregion
@@ -96,43 +100,73 @@ namespace EKGADGET.ViewModels
             }
         }
 
-        public string ObjetivoMensualText
+        public decimal ObjetivoMensualText
         {
-            get
-            {
-               
-                return this.objetivoMensualText;
-            }
+
+            get { return objetivoMensualText; }
             set
             {
-               
-                this.SetValue(ref this.objetivoMensualText, value);
+                if (objetivoMensualText != value)
+                {
+                    objetivoMensualText = value;
+                    OnPropertyChanged("ObjetivoMensualText");
+                }
             }
+            //get
+            //{
+
+            //    return this.objetivoMensualText;
+
+            //}
+            //set
+            //{
+
+            //    this.SetValue(ref this.objetivoMensualText, value);
+            //}
         }
 
 
-        public string ObjetivoSemanalText
+        public decimal ObjetivoSemanalText
         {
-            get
-            {
-                return this.objetivoSemanalText;
-            }
+
+            get { return objetivoSemanalText; }
             set
             {
-                this.SetValue(ref this.objetivoSemanalText, value);
+                if (objetivoSemanalText != value)
+                {
+                    objetivoSemanalText = value;
+                    OnPropertyChanged("ObjetivoSemanalText");
+                }
             }
+            //get
+            //{
+            //    return this.objetivoSemanalText;
+            //}
+            //set
+            //{
+            //    this.SetValue(ref this.objetivoSemanalText, value);
+            //}
         }
 
-        public string ObjetivoJefeText
+        public decimal ObjetivoJefeText
         {
-            get
-            {
-                return this.objetivoJefeText;
-            }
+            get { return objetivoJefeText; }
             set
             {
-                this.SetValue(ref this.objetivoJefeText, value);
+                if (objetivoJefeText != value)
+                {
+                    objetivoJefeText = value;
+                    OnPropertyChanged("ObjetivoJefeText");
+                }
             }
+            //get
+            //{
+            //    return this.objetivoJefeText;
+            //}
+            //set
+            //{
+            //    this.SetValue(ref this.objetivoJefeText, value);
+            //}
         }
 
         public string Fecha
@@ -147,6 +181,9 @@ namespace EKGADGET.ViewModels
             }
         }
 
+        private decimal someProperty;
+
+     
         #endregion
 
 
@@ -161,15 +198,17 @@ namespace EKGADGET.ViewModels
             }
         }
 
-     
+
 
         #endregion
 
         #region Methods
+
+        
         private async void Save()
         {
 
-            if(string.IsNullOrEmpty(ObjetivoMensualText))
+            if (string.IsNullOrEmpty(ObjetivoMensualText.ToString()))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                     "NO puede quedar OBJETIVO MENSUAL en Blanco!",
@@ -178,7 +217,7 @@ namespace EKGADGET.ViewModels
             }
 
 
-            if (decimal.Parse(objetivoMensualText) == 0)
+            if (objetivoMensualText == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                    "Ingrese Objetivo Mensual",
@@ -188,7 +227,7 @@ namespace EKGADGET.ViewModels
 
 
 
-            if (string.IsNullOrEmpty(objetivoSemanalText))
+            if (string.IsNullOrEmpty(objetivoSemanalText.ToString()))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                     "NO puede quedar OBJETIVO SEMANAL en Blanco!",
@@ -197,7 +236,7 @@ namespace EKGADGET.ViewModels
             }
 
 
-            if (decimal.Parse(objetivoSemanalText) == 0)
+            if (objetivoSemanalText == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                    "Ingrese Objetivo Semanal",
@@ -207,7 +246,7 @@ namespace EKGADGET.ViewModels
 
 
 
-            if (string.IsNullOrEmpty(objetivoJefeText))
+            if (string.IsNullOrEmpty(objetivoJefeText.ToString()))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                     "NO puede quedar OBJETIVO SEMANAL JEFE en Blanco!",
@@ -216,7 +255,7 @@ namespace EKGADGET.ViewModels
             }
 
 
-            if (decimal.Parse(objetivoJefeText) == 0)
+            if (objetivoJefeText == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
                                    "Ingrese Objetivo Semanal Jefe",
@@ -243,86 +282,126 @@ namespace EKGADGET.ViewModels
                 return;
             }
 
-
-
-            ///*check Connection*/
-            this.IsRunning = true;
-            this.IsEnabled = false;
-
-            var connection = await this.apiService.CheckConnection();
-
-
-            if (!connection.IsSucces)
+           // decimal isInt = decimal.Parse(diasOperacionText) % 1;
+            //isInt = ;
+            if (decimal.Parse(diasOperacionText) % 1 != 0)
             {
-
                 await Application.Current.MainPage.DisplayAlert("Error",
-                                        connection.Message,
-                                        "Aceptar");
+                                 "NO se acepan numeros decimales en dia de Mes Operativo!",
+                                 "Aceptar");
+                return;
+            }
+
+
+
+
+
+            int diasEnMEs = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+
+            if (decimal.Parse(diasOperacionText) > diasEnMEs )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                  "Los Dias de Operacion no puede ser MAYOR a los dias del Mes!",
+                                  "Aceptar");
+                return;
+            }
+
+
+            var res = await Application.Current.MainPage.DisplayAlert("Resumen:",
+                                "Dias de operacion: " + diasOperacionText + "\n" +
+                                 "Objetivo Mensual: " + objetivoMensualText.ToString("C2") + "\n" +
+                                 "Objetivo Jefe Sucursal: " + objetivoJefeText.ToString("C2") + "\n" +
+                                 "Objetivo Semanal: " + objetivoSemanalText.ToString("C2") + "\n" +
+                                 "¿Desea continuar?",
+                                 "Aceptar", "Cancelar");
+
+
+            if (res == true)
+            {
+                ///*check Connection*/
+                this.IsRunning = true;
+                this.IsEnabled = false;
+
+                var connection = await this.apiService.CheckConnection();
+
+
+                if (!connection.IsSucces)
+                {
+
+                    await Application.Current.MainPage.DisplayAlert("Error",
+                                            connection.Message,
+                                            "Aceptar");
+
+
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+                    return;
+
+                }
+
+
+                var url = Application.Current.Resources["UrlAPI"].ToString();
+                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+                var controller = Application.Current.Resources["UrlSucursalesController"].ToString();
+
+
+
+                this.sucursal.diasOperaMes = int.Parse(diasOperacionText);
+                this.sucursal.objetivoMes = objetivoMensualText;
+                this.sucursal.ObjetivoSemanal = objetivoSemanalText;
+                this.sucursal.ObjetivoSemanalJefe = objetivoJefeText;
+
+                var response = await this.apiService.Put(
+                    url,
+                   prefix,
+                   controller, this.sucursal, this.sucursal.localidadId);
+
+
+
+                if (!response.IsSucces)
+                {
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+
+                    await Application.Current.MainPage.DisplayAlert("Error",
+                                             response.Message,
+                                             "Aceptar");
+                    return;
+
+                }
+
+                //  var newSucursal = JsonConvert.DeserializeObject<Sucursales>(response.Result.ToString());
+
+                //var newSucursal = (Sucursales)response.Result; /*locasteamos*/
+                var sucursalViewModel = SucursalesViewModel.GetInstance();/*de esta manera se actualiza la lista de productos cuandose agraga uno nuevo*/
+
+                var oldSucursal = sucursalViewModel.MySucursales.Where(p => p.localidadId == this.sucursal.localidadId).FirstOrDefault();
+
+                if (oldSucursal != null)
+                {
+
+                    sucursalViewModel.MySucursales.Remove(oldSucursal);
+                }
+
+
+
+                sucursalViewModel.MySucursales.Add(this.sucursal);
+                sucursalViewModel.RefreshList();
 
 
                 this.IsRunning = false;
                 this.IsEnabled = true;
-                return;
 
+                await Application.Current.MainPage.Navigation.PopAsync();
+                //ProductsPage();
+                // await Application.Current.MainPage.Navigation.PopAsync();/*para desapilar */
+                //await App.Navigator.PopAsync();
             }
 
-
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlSucursalesController"].ToString();
+            return;
 
 
 
-            this.sucursal.diasOperaMes = int.Parse(diasOperacionText);
-            this.sucursal.objetivoMes = decimal.Parse(objetivoMensualText);
-            this.sucursal.ObjetivoSemanal = decimal.Parse(objetivoSemanalText);
-            this.sucursal.ObjetivoSemanalJefe = decimal.Parse(objetivoJefeText);
-
-            var response = await this.apiService.Put(
-                url,
-               prefix,
-               controller, this.sucursal, this.sucursal.localidadId);
-
-
-
-            if (!response.IsSucces)
-            {
-                this.IsRunning = false;
-                this.IsEnabled = true;
-
-                await Application.Current.MainPage.DisplayAlert("Error",
-                                         response.Message,
-                                         "Aceptar");
-                return;
-
-            }
-
-          //  var newSucursal = JsonConvert.DeserializeObject<Sucursales>(response.Result.ToString());
-
-            //var newSucursal = (Sucursales)response.Result; /*locasteamos*/
-            var sucursalViewModel = SucursalesViewModel.GetInstance();/*de esta manera se actualiza la lista de productos cuandose agraga uno nuevo*/
-
-            var oldSucursal = sucursalViewModel.MySucursales.Where(p => p.localidadId == this.sucursal.localidadId).FirstOrDefault();
-
-            if (oldSucursal != null)
-            {
-
-                sucursalViewModel.MySucursales.Remove(oldSucursal);
-            }
-
-
-
-            sucursalViewModel.MySucursales.Add(this.sucursal);
-            sucursalViewModel.RefreshList();
-
-
-            this.IsRunning = false;
-            this.IsEnabled = true;
-          
-            await Application.Current.MainPage.Navigation.PopAsync();
-            //ProductsPage();
-                                                                  // await Application.Current.MainPage.Navigation.PopAsync();/*para desapilar */
-                                                                  //await App.Navigator.PopAsync();
 
 
 
@@ -332,5 +411,9 @@ namespace EKGADGET.ViewModels
 
 
         #endregion
+
+        
+      
+
     }
 }

@@ -15,6 +15,11 @@ namespace EKGADGET.Views
 		public EditSucursalPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+
+
+            
+        }
+
+        
+    }
 }
