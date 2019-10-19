@@ -13,7 +13,7 @@
            
 
             <!--USAR PARAMETROS-->
-            <x:String x:Key="UrlAPI">http://192.168.1.79:16006</x:String>
+            <x:String x:Key="UrlAPI">http://192.168.1.83:16006</x:String>
             <x:String x:Key="UrlPrefix">/api</x:String>
             <x:String x:Key="UrlUsersController">/Security/login</x:String>
             <x:String x:Key="UrlSucursalesController">/Sucursales</x:String>
