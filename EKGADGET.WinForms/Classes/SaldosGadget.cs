@@ -119,6 +119,7 @@ namespace EKGADGET.WinForms.Classes
             }
             String BODY = "" +
              "<h2>Saldos de Caja(s): " + infoLoc.Nombre_Sucursal + " </h2>" +
+             "</hr>"+
              "<p>---------------------------------------- </p>" +
              "<p>Caja: " + caja1 + "</p>" +
              "<p>Saldo : " + string.Format("{0:C2}", SaldoC1) + "<p>" +

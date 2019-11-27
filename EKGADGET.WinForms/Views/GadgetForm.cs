@@ -5,16 +5,15 @@ namespace EKGADGET.WinForms
 
 
     #region Libraries (Librerias)
+    using DevComponents.DotNetBar;
+    using EKGADGET.WinForms.Context;
+    using EKGADGET.WinForms.Views;
     using System;
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using DevComponents.DotNetBar;
-    using EKGADGET.WinForms.Context;
-    using EKGADGET.WinForms.Data;
-    using EKGADGET.WinForms.Views;
     #endregion
     public partial class GadgetForm : DevComponents.DotNetBar.Office2007Form
     {

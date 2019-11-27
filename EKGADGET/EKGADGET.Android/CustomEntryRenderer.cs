@@ -7,9 +7,12 @@ using Android.Util;
 using System;
 using Android.Content;
 
+#pragma warning disable CS0612 // Type or member is obsolete
 [assembly: ExportRenderer(typeof(CustomEntry),typeof(CustomEntryRenderer))]
+#pragma warning restore CS0612 // Type or member is obsolete
 namespace EKGADGET.Droid
 {
+    [Obsolete]
     public class CustomEntryRenderer : EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)

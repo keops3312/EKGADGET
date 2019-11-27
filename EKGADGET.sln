@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EKGADGET.WinForms", "EKGADGET.WinForms\EKGADGET.WinForms.csproj", "{9398E33D-6840-4BCE-B9DE-095581B5A9B0}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EKGADGET.Android", "EKGADGE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EKGADGET.iOS", "EKGADGET\EKGADGET.iOS\EKGADGET.iOS.csproj", "{7E79B956-64AC-4D6C-AA8A-2C5B95F3A77B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EKGADGET", "EKGADGET\EKGADGET\EKGADGET.csproj", "{08774B6C-3E6E-4884-8D2E-27611327C2D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EKGADGET", "EKGADGET\EKGADGET\EKGADGET.csproj", "{08774B6C-3E6E-4884-8D2E-27611327C2D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

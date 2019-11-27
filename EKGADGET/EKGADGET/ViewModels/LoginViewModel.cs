@@ -170,19 +170,40 @@ namespace EKGADGET.ViewModels
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            if (response.IsSucces)
-            {
-                var account = JsonConvert.DeserializeObject<Accounts>(response.Result.ToString());
 
+            if (!response.IsSucces)
+            {
+
+                await Application.Current.MainPage.DisplayAlert("Error",
+                                     "Usuario y/o Contraseña Incorrecto",
+                                     "Aceptar");
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                return;
             }
 
-            MainViewModel.GetInstance().Sucursales = new SucursalesViewModel();
-            //Application.Current.MainPage = new SucursalesPage();//ProductsPage();
-            await Application.Current.MainPage.Navigation.PushAsync(new SucursalesPage());
 
-            this.IsRunning = false;
-            this.IsEnabled = true;
-            return;
+            if (response.IsSucces)
+            {
+                accounts = JsonConvert.DeserializeObject<Accounts>(response.Result.ToString());
+                //var accounts
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
+                MainViewModel.GetInstance().Sucursales = new SucursalesViewModel();
+                //Application.Current.MainPage = new SucursalesPage();//ProductsPage();
+                await Application.Current.MainPage.Navigation.PushAsync(new SucursalesPage());
+            }
+           
+
+
+
+
+
+          
+
+          
 
          
           

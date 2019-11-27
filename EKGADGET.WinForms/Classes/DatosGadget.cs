@@ -34,6 +34,9 @@ namespace EKGADGET.WinForms
         #endregion
 
         #region Methods (Metodos)
+
+
+        //2. BUSCO EL RANGO
         public void Rango()
         {
 
@@ -48,6 +51,14 @@ namespace EKGADGET.WinForms
             {
                 mes = "0" + mesF.ToString();
             }
+            else
+            {
+
+                mes = mesF.ToString();
+            }
+
+
+
             if (DateTime.Now.Day < 10)
             {
                 dia = "0" + DateTime.Now.Day;
@@ -56,6 +67,9 @@ namespace EKGADGET.WinForms
             {
                 dia = DateTime.Now.Day.ToString();
             }
+
+
+
 
             iniciof = anoF + "-" + mes + "-" + "01";
 
@@ -174,6 +188,9 @@ namespace EKGADGET.WinForms
 
         }
 
+
+
+        //1. CARGO DATOS GENERALES
         public void datosGadget()
         {
             db = new SQLContext();

@@ -181,7 +181,7 @@ namespace EKGADGET.ViewModels
             }
         }
 
-        private decimal someProperty;
+        //private decimal someProperty;
 
      
         #endregion
